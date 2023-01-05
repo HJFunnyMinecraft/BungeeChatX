@@ -52,6 +52,6 @@ public class ChatEvent implements Listener {
             }
         }
 
-        plugin.getLogger().info("§c[BC] " + displayServer + "§r "+displayName + " " + event.getMessage());
+        plugin.getLogger().info("§b§l" + displayServer + "§r " + displayName + " " + event.getMessage());
     }
 }
