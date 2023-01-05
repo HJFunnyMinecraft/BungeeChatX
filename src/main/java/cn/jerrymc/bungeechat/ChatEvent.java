@@ -39,19 +39,22 @@ public class ChatEvent implements Listener {
         messagePlayer.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,new ComponentBuilder("发送时间: "+ new Date()).create()));
         TextComponent messageSpace = new TextComponent(" ");
         TextComponent messageMain = new TextComponent(event.getMessage());
-        // messageMain.setColor(ChatColor.GRAY);
+        messageMain.setColor(ChatColor.WHITE);
         messageSrv.addExtra(messageSpace);
         messageSrv.addExtra(messagePlayer);
         messageSrv.addExtra(messageSpace);
         messageSrv.addExtra(messageMain);
 
         for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
-            if(recPlayer.getServer().getInfo().getName() != player.getServer().getInfo().getName()){
-                recPlayer.sendMessage(messageSrv);
-                event.setCancelled(true);
-            }
+            // if(recPlayer.getServer().getInfo().getName() != player.getServer().getInfo().getName()){
+            //     recPlayer.sendMessage(messageSrv);
+            //     event.setCancelled(true);
+            // }
+            recPlayer.sendMessage(messageSrv);
         }
 
         plugin.getLogger().info("§b§l" + displayServer + "§r " + displayName + " " + event.getMessage());
+        
+        event.setCancelled(true);
     }
 }
