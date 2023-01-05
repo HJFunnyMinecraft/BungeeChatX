@@ -35,6 +35,7 @@ public class ChatEvent implements Listener {
         messageSrv.setBold(true);
         TextComponent messagePlayer = new TextComponent(displayName);
         messagePlayer.setColor(ChatColor.YELLOW);
+        messagePlayer.setBold(false);
         messagePlayer.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,new ComponentBuilder("发送时间: "+ new Date()).create()));
         TextComponent messageSpace = new TextComponent(" ");
         TextComponent messageMain = new TextComponent(event.getMessage());
