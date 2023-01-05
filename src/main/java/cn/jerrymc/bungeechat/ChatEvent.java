@@ -34,7 +34,7 @@ public class ChatEvent implements Listener {
         messageSrv.setColor(ChatColor.AQUA);
         messageSrv.setBold(true);
         TextComponent messagePlayer = new TextComponent(displayName);
-        messagePlayer.setColor(ChatColor.YELLOW);
+        messagePlayer.setColor(ChatColor.WHITE);
         messagePlayer.setBold(false);
         messagePlayer.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,new ComponentBuilder("发送时间: "+ new Date()).create()));
         TextComponent messageSpace = new TextComponent(" ");
@@ -46,11 +46,12 @@ public class ChatEvent implements Listener {
         messageSrv.addExtra(messageMain);
 
         for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
-            if(recPlayer.getServer().getInfo().getName!=player.getServer().getInfo().getName()){
+            if(recPlayer.getServer().getInfo().getName() != player.getServer().getInfo().getName()){
                 recPlayer.sendMessage(messageSrv);
+                event.setCancelled(true);
             }
         }
 
-        plugin.getLogger().info("§c[BungeeChat]§r "+displayName+" "+event.getMessage());
+        plugin.getLogger().info("§c[BC] " + displayServer + "§r "+displayName + " " + event.getMessage());
     }
 }
