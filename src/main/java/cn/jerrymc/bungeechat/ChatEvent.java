@@ -32,7 +32,7 @@ public class ChatEvent implements Listener {
 
         TextComponent messageSrv = new TextComponent(displayServer);
         messageSrv.setColor(ChatColor.AQUA);
-        messageSrv.setBold(true)
+        messageSrv.setBold(true);
         TextComponent messagePlayer = new TextComponent(displayName);
         messagePlayer.setColor(ChatColor.YELLOW);
         messagePlayer.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,new ComponentBuilder("发送时间: "+ new Date()).create()));

@@ -5,7 +5,7 @@ import net.md_5.bungee.api.plugin.Plugin;
 public final class Main extends Plugin {
     @Override
     public void onEnable() {
-        getLogger().info("§cBungeeChat§r, Plugin by §3bcmray & HECODE§r, version §31.0§r, Loading...")
+        getLogger().info("§cBungeeChat§r, Plugin by §3bcmray & HECODE§r, version §31.0§r, Loading...");
         // 注册监听器
         getProxy().getPluginManager().registerListener(this, new PostLoginEvent());
         getProxy().getPluginManager().registerListener(this, new ChatEvent(this));
