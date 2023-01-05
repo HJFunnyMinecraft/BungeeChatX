@@ -1,0 +1,4 @@
+name: Hjchat
+version: '1.0'
+main: cn.jerrymc.hjchat.Main
+description: bungeecord聊天插件
