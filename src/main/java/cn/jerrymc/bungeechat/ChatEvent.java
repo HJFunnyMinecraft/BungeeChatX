@@ -45,11 +45,11 @@ public class ChatEvent implements Listener {
         messageSrv.addExtra(messageMain);
 
         for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
-            recPlayer.sendMessage(messageSrv);
+            if(recPlayer.getServer().getInfo().getName!=player.getServer().getInfo().getName()){
+                recPlayer.sendMessage(messageSrv);
+            }
         }
 
         plugin.getLogger().info("§c[BungeeChat]§r "+displayName+" "+event.getMessage());
-
-        event.setCancelled(true);
     }
 }
