@@ -7,9 +7,9 @@ public final class Main extends Plugin {
     public void onEnable() {
         getLogger().info("§c ____                               ____ _           _   ");
         getLogger().info("§c| __ ) _   _ _ __   __ _  ___  ___ / ___| |__   __ _| |_ ");
-        getLogger().info("§c|  _ \| | | | '_ \ / _` |/ _ \/ _ \ |   | '_ \ / _` | __|");
+        getLogger().info("§c|  _ \\| | | | '_ \\ / _` |/ _ \\/ _ \\ |   | '_ \\ / _` | __|");
         getLogger().info("§c| |_) | |_| | | | | (_| |  __/  __/ |___| | | | (_| | |_ ");
-        getLogger().info("§c|____/ \__,_|_| |_|\__, |\___|\___|\____|_| |_|\__,_|\__|");
+        getLogger().info("§c|____/ \\__,_|_| |_|\\__, |\\___|\\___|\\____|_| |_|\\__,_|\\__|");
         getLogger().info("§c                   |___/                                 ");
         getLogger().info("Plugin by §bbcmray & CodeZhangBorui§r, version §b1.3§r, Loading...");
         // 注册监听器
