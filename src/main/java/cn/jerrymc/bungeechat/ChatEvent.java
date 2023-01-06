@@ -40,6 +40,7 @@ public class ChatEvent implements Listener {
         TextComponent messageSpace = new TextComponent(" ");
         TextComponent messageMain = new TextComponent(event.getMessage());
         messageMain.setColor(ChatColor.WHITE);
+        messageMain.setBold(false);
         messageSrv.addExtra(messageSpace);
         messageSrv.addExtra(messagePlayer);
         messageSrv.addExtra(messageSpace);
