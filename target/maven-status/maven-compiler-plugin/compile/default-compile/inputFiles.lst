@@ -1,4 +1,5 @@
-/Users/mac/Desktop/bc/mcworkspace/hjchat/src/main/java/cn/jerrymc/hjchat/PlayerAddressMapping.java
-/Users/mac/Desktop/bc/mcworkspace/hjchat/src/main/java/cn/jerrymc/hjchat/Main.java
-/Users/mac/Desktop/bc/mcworkspace/hjchat/src/main/java/cn/jerrymc/hjchat/ChatEvent.java
-/Users/mac/Desktop/bc/mcworkspace/hjchat/src/main/java/cn/jerrymc/hjchat/PostLoginEvent.java
+/workspaces/BungeeChat/src/main/java/cn/jerrymc/bungeechat/PlayerAddressMapping.java
+/workspaces/BungeeChat/src/main/java/cn/jerrymc/bungeechat/Main.java
+/workspaces/BungeeChat/src/main/java/cn/jerrymc/bungeechat/ChatEvent.java
+/workspaces/BungeeChat/src/main/java/cn/jerrymc/bungeechat/PostLoginEvent.java
+/workspaces/BungeeChat/src/main/java/cn/jerrymc/bungeechat/AnnounceCommand.java

@@ -1,4 +1,5 @@
-name: Hjchat
-version: '1.0'
-main: cn.jerrymc.hjchat.Main
-description: bungeecord聊天插件
+name: BungeeChat
+author: bcmray & CodeZhangBorui
+version: '1.2'
+main: cn.jerrymc.bungeechat.Main
+description: BungeeCord 跨服聊天插件

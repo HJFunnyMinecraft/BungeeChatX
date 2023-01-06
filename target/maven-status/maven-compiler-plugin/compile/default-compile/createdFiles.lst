@@ -1,4 +1,5 @@
-cn/jerrymc/hjchat/PostLoginEvent.class
-cn/jerrymc/hjchat/ChatEvent.class
-cn/jerrymc/hjchat/PlayerAddressMapping.class
-cn/jerrymc/hjchat/Main.class
+cn/jerrymc/bungeechat/Main.class
+cn/jerrymc/bungeechat/AnnounceCommand.class
+cn/jerrymc/bungeechat/PostLoginEvent.class
+cn/jerrymc/bungeechat/ChatEvent.class
+cn/jerrymc/bungeechat/PlayerAddressMapping.class
