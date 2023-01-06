@@ -47,15 +47,14 @@ public class ChatEvent implements Listener {
         messageSrv.addExtra(messageMain);
 
         for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
-            // if(recPlayer.getServer().getInfo().getName() != player.getServer().getInfo().getName()){
-            //     recPlayer.sendMessage(messageSrv);
-            //     event.setCancelled(true);
-            // }
-            recPlayer.sendMessage(messageSrv);
+            if(recPlayer.getServer().getInfo().getName() != player.getServer().getInfo().getName()){
+                recPlayer.sendMessage(messageSrv);
+            }
+            // recPlayer.sendMessage(messageSrv);
         }
 
         plugin.getLogger().info("§b§l" + displayServer + "§r " + displayName + " " + event.getMessage());
         
-        event.setCancelled(true);
+        // event.setCancelled(true);
     }
 }
