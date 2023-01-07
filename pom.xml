@@ -80,7 +80,7 @@
         </dependency>
         <dependency>
             <groupId>org.bstats</groupId>
-            <artifactId>bstats-bukkit</artifactId>
+            <artifactId>bstats-bungeecord</artifactId>
             <version>3.0.0</version>
             <scope>compile</scope>
         </dependency>
