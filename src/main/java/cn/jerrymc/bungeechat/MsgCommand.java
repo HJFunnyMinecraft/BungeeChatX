@@ -17,7 +17,7 @@ public class MsgCommand extends Command {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        String displayPrefix = "[" + sender.getName() + " -> " + args[0] + "] "
+        String displayPrefix = "[" + sender.getName() + " -> " + args[0] + "] ";
 
         StringBuilder displayMsg = new StringBuilder();
         for (int i = 1; i < args.length; i++) {
