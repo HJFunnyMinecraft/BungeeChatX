@@ -5,7 +5,12 @@ import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
+import net.md_5.bungee.api.plugin.TabExecutor;
 import net.md_5.bungee.api.plugin.Plugin;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class MsgCommand extends Command {
     // Command Initial from LuckPerms Start
@@ -66,7 +71,7 @@ public class MsgCommand extends Command {
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+    public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
         if (args.length == 1) {
             List<String> subCommands = new ArrayList<>();
             for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()) {
