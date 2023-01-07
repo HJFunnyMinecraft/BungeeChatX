@@ -13,10 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class MsgCommand extends Command {
+public class MsgCommand extends Command implements TabExecutor {
+    private final Plugin plugin;
+
     // Command Initial from LuckPerms Start
-    private static final String NAME = "bcmsg";
-    private static final String[] ALIASES = {"msg", "tell"};
+    private static final String NAME = "msgs";
+    private static final String[] ALIASES = {"msgserver", "msg", "tell"};
 
     private static final String[] SLASH_ALIASES = Stream.concat(
             Stream.of(NAME),
@@ -34,12 +36,11 @@ public class MsgCommand extends Command {
     }
     // Command Initial End
 
-    private final Plugin plugin;
-
     @Override
     public void execute(CommandSender sender, String[] args) {
         if(args.length < 2) {
             sender.sendMessage("§c§l错误：§r参数过少！");
+            return;
         }
 
         plugin.getLogger().info("[Debug] SenderName={" + sender.getName() + "}");
@@ -60,28 +61,19 @@ public class MsgCommand extends Command {
         messageMain.setBold(false);
 
         sendPrefix.addExtra(messageMain);
-
-        boolean successful = false;
-
-        for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()) {
-            plugin.getLogger().info("[Debug] NowRecPlayerName={" + recPlayer.getName() + "}");
-            if(recPlayer.getName().toString() == args[0]) {
-                plugin.getLogger().info("[Debug] HIT found player.");
-                recPlayer.sendMessage(sendPrefix);
-                successful = true;
-            }
-        }
-
-        if(successful == true) {
+        
+        ProxiedPlayer tplayer = BungeeCord.getInstance().getPlayer(args[0]);
+        if (player != null) {
+            tplayer.sendMessage(sendPrefix);
             sender.sendMessage(sendPrefix);
             plugin.getLogger().info(displayPrefix + displayMsg.toString());
         } else {
-            sender.sendMessage("§c§l错误：§r玩家§l" + args[0] + "§r不存在！");
+            sender.sendMessage("§c§l错误：§r玩家 §l" + args[0] + "§r 不存在！");
         }
     }
 
     public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
-        if (args.length == 0) {
+        if (args.length == 1) {
             List<String> subCommands = new ArrayList<String>();
             for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()) {
                 subCommands.add(recPlayer.getName());
