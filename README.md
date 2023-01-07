@@ -1,6 +1,6 @@
 # BungeeChat
 
-**中文** | [English](https://github.com/HJFunnyMinecraft/BungeeChat/edit/main/README_EN)
+**中文** | [English](https://github.com/HJFunnyMinecraft/BungeeChat/edit/main/README_EN.md)
 
 基于 BungeeCord 的跨服聊天
 
