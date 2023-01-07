@@ -8,7 +8,12 @@ Cross-Server Chat Plugin based on BungeeCord
 
 - √ Minecraft Vanilla Style
 - √ Won't effect message processing plugin on your server
+- √ Support Private Chat
 
 ## How to use
 
 Put `jar` file into `/plugins` folder in your Bungeecord server.
+
+## Commands
+
+`/bcmsg` (Alias: `/msgs` `/msgserver`): Private chat across servers

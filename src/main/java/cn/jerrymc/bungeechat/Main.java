@@ -11,7 +11,7 @@ public final class Main extends Plugin {
         getLogger().info("§c| |_) | |_| | | | | (_| |  __/  __/ |___| | | | (_| | |_ §r");
         getLogger().info("§c|____/ \\__,_|_| |_|\\__, |\\___|\\___|\\____|_| |_|\\__,_|\\__|§r");
         getLogger().info("§c                   |___/                                 §r");
-        getLogger().info("Plugin by §bbcmray & CodeZhangBorui§r, version §b${project.version}§r, §lLoading...§r");
+        getLogger().info("Plugin by §bbcmray & CodeZhangBorui§r, version §b1.4§r, §lLoading...§r");
         // 注册监听器
         getProxy().getPluginManager().registerListener(this, new PostLoginEvent());
         getProxy().getPluginManager().registerListener(this, new ChatEvent(this));

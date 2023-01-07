@@ -44,10 +44,7 @@ public class MsgCommand extends Command implements TabExecutor {
             return;
         }
 
-        plugin.getLogger().info("[Debug] SenderName={" + sender.getName() + "}");
-        plugin.getLogger().info("[Debug] Args0={" + args[0] + "}");
-
-        String displayPrefix = "[" + sender.getName() + " -> " + args[0] + "] ";
+        String displayPrefix = "[" + sender.getName() + "§l -> §r" + args[0] + "] ";
 
         StringBuilder displayMsg = new StringBuilder();
         for (int i = 1; i < args.length; i++) {
