@@ -71,7 +71,6 @@ public class MsgCommand extends Command {
         }
     }
 
-    @Override
     public List<String> onTabComplete(CommandSender sender, String[] args) {
         if (args.length == 1) {
             List<String> subCommands = new ArrayList<String>();
