@@ -18,8 +18,8 @@ public class MsgCommand extends Command implements TabExecutor {
     private final Plugin plugin;
 
     // Command Initial from LuckPerms Start
-    private static final String NAME = "msgs";
-    private static final String[] ALIASES = {"msgserver", "msg", "tell"};
+    private static final String NAME = "bcmsg";
+    private static final String[] ALIASES = {"msgs", "msgserver"};
 
     private static final String[] SLASH_ALIASES = Stream.concat(
             Stream.of(NAME),
@@ -66,7 +66,9 @@ public class MsgCommand extends Command implements TabExecutor {
         ProxiedPlayer tplayer = ProxyServer.getInstance().getPlayer(args[0]);
         if (tplayer != null) {
             tplayer.sendMessage(sendPrefix);
-            sender.sendMessage(sendPrefix);
+            if(tplayer != sender) {
+                sender.sendMessage(sendPrefix);
+            }
             plugin.getLogger().info(displayPrefix + displayMsg.toString());
         } else {
             sender.sendMessage("§c§l错误：§r玩家 §l" + args[0] + "§r 不存在！");
@@ -74,13 +76,12 @@ public class MsgCommand extends Command implements TabExecutor {
     }
 
     public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
+        List<String> subCommands = new ArrayList<String>();
         if (args.length == 1) {
-            List<String> subCommands = new ArrayList<String>();
             for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()) {
                 subCommands.add(recPlayer.getName());
             }
-            return subCommands;
         }
-        return null;
+        return subCommands;
     }
 }
