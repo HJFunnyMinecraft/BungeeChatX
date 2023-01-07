@@ -4,6 +4,8 @@
 
 Cross-Server Chat Plugin based on BungeeCord
 
+![bStats Data](https://bstats.org/signatures/bungeecord/bungeechatx.svg)
+
 ## Plugin Feature
 
 - √ Minecraft Vanilla Style

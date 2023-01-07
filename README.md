@@ -4,6 +4,8 @@
 
 基于 BungeeCord 的跨服聊天
 
+![bStats Data](https://bstats.org/signatures/bungeecord/bungeechatx.svg)
+
 ## 插件特点
 
 - √ 原版风格
