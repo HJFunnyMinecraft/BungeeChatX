@@ -71,9 +71,9 @@ public class MsgCommand extends Command {
     }
 
     @Override
-    public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
+    public List<String> onTabComplete(CommandSender sender, String[] args) {
         if (args.length == 1) {
-            List<String> subCommands = new ArrayList<>();
+            List<String> subCommands = new ArrayList<String>();
             for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()) {
                 subCommands.add(recPlayer.getName());
             }
