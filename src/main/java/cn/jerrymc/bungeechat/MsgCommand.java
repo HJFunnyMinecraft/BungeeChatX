@@ -44,7 +44,7 @@ public class MsgCommand extends Command {
 
         if(successful == true) {
             sender.sendMessage(sendPrefix);
-            plugin.getLogger().info(sendPrefix);
+            plugin.getLogger().info(displayPrefix + displayMsg.toString());
         } else {
             sender.sendMessage("§c§l错误：§r玩家§l" + args[0] + "§r不存在！");
         }
