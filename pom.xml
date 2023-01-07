@@ -6,7 +6,7 @@
 
     <groupId>cn.jerrymc</groupId>
     <artifactId>BungeeChat</artifactId>
-    <version>1.3</version>
+    <version>1.4-SNAPSHOT-01</version>
     <packaging>jar</packaging>
 
     <name>BungeeChat</name>
