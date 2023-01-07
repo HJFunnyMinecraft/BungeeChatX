@@ -1,5 +1,5 @@
-name: BungeeChat
+name: BungeeChatX
 author: bcmray & CodeZhangBorui
 version: '${project.version}'
-main: cn.jerrymc.bungeechat.Main
+main: cn.jerrymc.bungeechatx.Main
 description: BungeeCord 跨服聊天插件

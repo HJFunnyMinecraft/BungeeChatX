@@ -1,4 +1,4 @@
-# BungeeChat
+# BungeeChatX
 
 [中文](https://github.com/HJFunnyMinecraft/BungeeChat/blob/main/README.md) | **English**
 
