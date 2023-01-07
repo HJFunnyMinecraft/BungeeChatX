@@ -65,7 +65,7 @@ public class MsgCommand extends Command {
 
         for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()) {
             plugin.getLogger().info("[Debug] NowRecPlayerName={" + recPlayer.getName() + "}");
-            if(recPlayer.getName() == args[0]) {
+            if(recPlayer.getName().toString() == args[0]) {
                 plugin.getLogger().info("[Debug] HIT found player.");
                 recPlayer.sendMessage(sendPrefix);
                 successful = true;
