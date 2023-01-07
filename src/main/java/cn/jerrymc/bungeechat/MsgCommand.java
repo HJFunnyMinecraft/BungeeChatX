@@ -8,12 +8,27 @@ import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Plugin;
 
 public class MsgCommand extends Command {
-    private final Plugin plugin;
+    // Command Initial from LuckPerms Start
+    private static final String NAME = "bcmsg";
+    private static final String[] ALIASES = {"msg", "tell"};
+
+    private static final String[] SLASH_ALIASES = Stream.concat(
+            Stream.of(NAME),
+            Arrays.stream(ALIASES)
+    ).map(s -> '/' + s).toArray(String[]::new);
+
+    private static final String[] ALIASES_TO_REGISTER = Stream.concat(
+            Arrays.stream(ALIASES),
+            Arrays.stream(SLASH_ALIASES)
+    ).toArray(String[]::new);
 
     public MsgCommand(Plugin plugin){
-        super("msg");
+        super(NAME, null, ALIASES_TO_REGISTER);
         this.plugin = plugin;
     }
+    // Command Initial End
+
+    private final Plugin plugin;
 
     @Override
     public void execute(CommandSender sender, String[] args) {
@@ -47,6 +62,17 @@ public class MsgCommand extends Command {
             plugin.getLogger().info(displayPrefix + displayMsg.toString());
         } else {
             sender.sendMessage("§c§l错误：§r玩家§l" + args[0] + "§r不存在！");
+        }
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        if (args.length == 1) {
+            List<String> subCommands = new ArrayList<>();
+            for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()) {
+                subCommands.add(recPlayer.getName());
+            }
+            return subCommands;
         }
     }
 }
