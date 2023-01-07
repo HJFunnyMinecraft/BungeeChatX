@@ -42,8 +42,8 @@ public class MsgCommand extends Command {
             sender.sendMessage("§c§l错误：§r参数过少！");
         }
 
-        plugin.getLogger().warn("[Debug] SenderName={" + sender.getName() + "}");
-        plugin.getLogger().warn("[Debug] Args0={" + args[0] + "}");
+        plugin.getLogger().info("[Debug] SenderName={" + sender.getName() + "}");
+        plugin.getLogger().info("[Debug] Args0={" + args[0] + "}");
 
         String displayPrefix = "[" + sender.getName() + " -> " + args[0] + "] ";
 
@@ -64,9 +64,9 @@ public class MsgCommand extends Command {
         boolean successful = false;
 
         for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()) {
-            plugin.getLogger().warn("[Debug] NowRecPlayerName={" + recPlayer.getName() + "}");
+            plugin.getLogger().info("[Debug] NowRecPlayerName={" + recPlayer.getName() + "}");
             if(recPlayer.getName() == args[0]) {
-                plugin.getLogger().warn("[Debug] HIT found player.");
+                plugin.getLogger().info("[Debug] HIT found player.");
                 recPlayer.sendMessage(sendPrefix);
                 successful = true;
             }
