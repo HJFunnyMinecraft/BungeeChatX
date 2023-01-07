@@ -1,13 +1,13 @@
 # BungeeChat
 
-[中文](https://github.com/HJFunnyMinecraft/BungeeChat/edit/main/README_EN) | **English**
+[中文](https://github.com/HJFunnyMinecraft/BungeeChat/edit/main/README) | **English**
 
 Cross-Server Chat Plugin based on BungeeCord
 
 ## Plugin Feature
 
-√ Minecraft Vanilla Style
-√ Won't effect message processing plugin on your server
+- √ Minecraft Vanilla Style
+- √ Won't effect message processing plugin on your server
 
 ## How to use
 
