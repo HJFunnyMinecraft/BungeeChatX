@@ -27,7 +27,7 @@ public class MsgCommand extends Command {
         TextComponent sendPrefix = new TextComponent(displayPrefix);
         sendPrefix.setColor(ChatColor.WHITE);
         sendPrefix.setBold(false);
-        TextComponent messageMain = new TextComponent(displayMsg);
+        TextComponent messageMain = new TextComponent(displayMsg.toString());
         messageMain.setColor(ChatColor.WHITE);
         messageMain.setBold(false);
 
@@ -44,7 +44,7 @@ public class MsgCommand extends Command {
 
         if(successful == true) {
             sender.sendMessage(sendPrefix);
-            plugin.getLogger.info(sendPrefix);
+            plugin.getLogger().info(sendPrefix);
         } else {
             sender.sendMessage("§c§l错误：§r玩家§l" + args[0] + "§r不存在！");
         }
