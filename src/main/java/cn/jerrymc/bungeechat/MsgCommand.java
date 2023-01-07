@@ -79,5 +79,6 @@ public class MsgCommand extends Command {
             }
             return subCommands;
         }
+        return null;
     }
 }
