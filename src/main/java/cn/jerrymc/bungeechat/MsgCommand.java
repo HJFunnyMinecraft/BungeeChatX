@@ -21,15 +21,15 @@ public class MsgCommand extends Command {
 
         StringBuilder displayMsg = new StringBuilder();
         for (int i = 1; i < args.length; i++) {
-            msg.append(args[i]).append(" ");
+            displayMsg.append(args[i]).append(" ");
         }
 
         TextComponent sendPrefix = new TextComponent(displayPrefix);
-        fromPlayer.setColor(ChatColor.WHITE);
-        fromPlayer.setBold(false);
+        sendPrefix.setColor(ChatColor.WHITE);
+        sendPrefix.setBold(false);
         TextComponent messageMain = new TextComponent(displayMsg);
-        toPlayer.setColor(ChatColor.WHITE);
-        toPlayer.setBold(false);
+        messageMain.setColor(ChatColor.WHITE);
+        messageMain.setBold(false);
 
         sendPrefix.addExtra(messageMain);
 
