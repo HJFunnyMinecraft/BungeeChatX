@@ -64,7 +64,7 @@ public class MsgCommand extends Command implements TabExecutor {
         sendPrefix.addExtra(messageMain);
         
         ProxiedPlayer tplayer = ProxyServer.getInstance().getPlayer(args[0]);
-        if (player != null) {
+        if (tplayer != null) {
             tplayer.sendMessage(sendPrefix);
             sender.sendMessage(sendPrefix);
             plugin.getLogger().info(displayPrefix + displayMsg.toString());
