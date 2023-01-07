@@ -19,7 +19,7 @@ public class MsgCommand extends Command implements TabExecutor {
 
     // Command Initial from LuckPerms Start
     private static final String NAME = "bcmsg";
-    private static final String[] ALIASES = {"msgs", "msgserver"};
+    private static final String[] ALIASES = {"bctell", "msgs", "tells"};
 
     private static final String[] SLASH_ALIASES = Stream.concat(
             Stream.of(NAME),

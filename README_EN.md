@@ -16,4 +16,4 @@ Put `jar` file into `/plugins` folder in your Bungeecord server.
 
 ## Commands
 
-`/bcmsg` (Alias: `/msgs` `/msgserver`): Private chat across servers
+`/bcmsg` (Aliases：`/bctell` `/msgs` `/tells`): Private chat across servers

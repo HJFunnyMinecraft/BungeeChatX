@@ -16,4 +16,4 @@
 
 ## 指令
 
-`/bcmsg` (别名：`/msgs` `/msgserver`)：跨服私聊
+`/bcmsg` (别名：`/bctell` `/msgs` `/tells`)：跨服私聊
