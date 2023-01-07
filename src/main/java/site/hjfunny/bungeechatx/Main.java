@@ -1,6 +1,7 @@
-package cn.jerrymc.bungeechat;
+package site.hjfunny.bungeechatx;
 
 import net.md_5.bungee.api.plugin.Plugin;
+import org.bstats.bungeecord.Metrics;
 
 public final class Main extends Plugin {
     @Override
@@ -18,6 +19,10 @@ public final class Main extends Plugin {
 
         // 注册指令
         getProxy().getPluginManager().registerCommand(this,new MsgCommand(this));
+
+        // 注册 bStats
+        int pluginId = 17333; // <-- Replace with the id of your plugin!
+        Metrics metrics = new Metrics(this, pluginId);
 
         getLogger().info("§c§l[BungeeChatX]§r Enabled!");
     }

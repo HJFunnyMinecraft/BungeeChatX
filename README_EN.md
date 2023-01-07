@@ -1,6 +1,6 @@
 # BungeeChatX
 
-[中文](https://github.com/HJFunnyMinecraft/BungeeChat/blob/main/README.md) | **English**
+[中文](https://github.com/HJFunnyMinecraft/BungeeChatX/blob/main/README.md) | **English**
 
 Cross-Server Chat Plugin based on BungeeCord
 

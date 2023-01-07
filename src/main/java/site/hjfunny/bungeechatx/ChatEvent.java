@@ -1,4 +1,4 @@
-package cn.jerrymc.bungeechat;
+package site.hjfunny.bungeechatx;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
