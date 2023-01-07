@@ -63,7 +63,7 @@ public class MsgCommand extends Command implements TabExecutor {
 
         sendPrefix.addExtra(messageMain);
         
-        ProxiedPlayer tplayer = BungeeCord.getInstance().getPlayer(args[0]);
+        ProxiedPlayer tplayer = ProxyServer.getInstance().getPlayer(args[0]);
         if (player != null) {
             tplayer.sendMessage(sendPrefix);
             sender.sendMessage(sendPrefix);
