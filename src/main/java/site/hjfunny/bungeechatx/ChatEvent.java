@@ -30,7 +30,7 @@ public class ChatEvent implements Listener {
             String displayServer = "[?] ";
             plugin.getLogger().info("Error while processing the server information of player '" + player.getName() + "'");
         } else {
-            senderSrv = player.getServer();
+            final ServerInfo senderSrv = player.getServer();
             String displayServer = "[" + senderSrv.getInfo().getName() + "] ";
         }
         String displayName = "<" + player.getName() + "> ";
