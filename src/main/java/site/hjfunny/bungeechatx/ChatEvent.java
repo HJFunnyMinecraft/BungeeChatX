@@ -30,8 +30,7 @@ public class ChatEvent implements Listener {
             String displayServer = "[?] ";
             plugin.getLogger().info("Error while processing the server information of player '" + player.getName() + "'");
         } else {
-            final ServerInfo senderSrv = player.getServer();
-            String displayServer = "[" + senderSrv.getInfo().getName() + "] ";
+            String displayServer = "[" + player.getServer().getInfo().getName() + "] ";
         }
         String displayName = "<" + player.getName() + "> ";
 
@@ -52,7 +51,7 @@ public class ChatEvent implements Listener {
         for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
             if(recPlayer.getServer() == null) {
                 plugin.getLogger().info("Error while processing the server information of player '" + recPlayer.getName() + "', ignore it.");
-            } else if(recPlayer.getServer() != senderSrv){
+            } else if(recPlayer.getServer() != player.getServer()){
                 recPlayer.sendMessage(messageSrv);
             }
         }
