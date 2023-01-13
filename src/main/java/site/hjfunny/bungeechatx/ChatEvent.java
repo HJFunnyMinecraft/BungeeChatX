@@ -26,11 +26,12 @@ public class ChatEvent implements Listener {
         if(event.isCommand()||event.isCancelled()||event.isProxyCommand()) return;
 
         ProxiedPlayer player = PlayerAddressMapping.playerMap.get(event.getSender().getSocketAddress());
+        String displayServer;
         if(player.getServer() == null) {
-            String displayServer = "[?] ";
+            displayServer = "[?] ";
             plugin.getLogger().info("Error while processing the server information of player '" + player.getName() + "'");
         } else {
-            String displayServer = "[" + player.getServer().getInfo().getName() + "] ";
+            displayServer = "[" + player.getServer().getInfo().getName() + "] ";
         }
         String displayName = "<" + player.getName() + "> ";
 
