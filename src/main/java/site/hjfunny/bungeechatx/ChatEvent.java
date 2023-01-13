@@ -26,9 +26,14 @@ public class ChatEvent implements Listener {
         if(event.isCommand()||event.isCancelled()||event.isProxyCommand()) return;
 
         ProxiedPlayer player = PlayerAddressMapping.playerMap.get(event.getSender().getSocketAddress());
-
-        String displayServer = "["+player.getServer().getInfo().getName()+"]";
-        String displayName = "<" + player.getName() + ">";
+        if(player.getServer() == null) {
+            String displayServer = "[?] ";
+            plugin.getLogger().info("Error while processing the server information of player '" + player.getName() + "'");
+        } else {
+            senderSrv = player.getServer();
+            String displayServer = "[" + senderSrv.getInfo().getName() + "] ";
+        }
+        String displayName = "<" + player.getName() + "> ";
 
         TextComponent messageSrv = new TextComponent(displayServer);
         messageSrv.setColor(ChatColor.AQUA);
@@ -36,25 +41,22 @@ public class ChatEvent implements Listener {
         TextComponent messagePlayer = new TextComponent(displayName);
         messagePlayer.setColor(ChatColor.WHITE);
         messagePlayer.setBold(false);
-        messagePlayer.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,new ComponentBuilder("发送时间: "+ new Date()).create()));
+        messagePlayer.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,new ComponentBuilder("TIME: "+ new Date()).create()));
         TextComponent messageSpace = new TextComponent(" ");
         TextComponent messageMain = new TextComponent(event.getMessage());
         messageMain.setColor(ChatColor.WHITE);
         messageMain.setBold(false);
-        messageSrv.addExtra(messageSpace);
         messageSrv.addExtra(messagePlayer);
-        messageSrv.addExtra(messageSpace);
         messageSrv.addExtra(messageMain);
 
         for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
-            if(recPlayer.getServer().getInfo().getName() != player.getServer().getInfo().getName()){
+            if(recPlayer.getServer() == null) {
+                plugin.getLogger().info("Error while processing the server information of player '" + recPlayer.getName() + "', ignore it.");
+            } else if(recPlayer.getServer() != senderSrv){
                 recPlayer.sendMessage(messageSrv);
             }
-            // recPlayer.sendMessage(messageSrv);
         }
 
         plugin.getLogger().info("§b§l" + displayServer + "§r " + displayName + " " + event.getMessage());
-        
-        // event.setCancelled(true);
     }
 }

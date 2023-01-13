@@ -9,12 +9,12 @@ Cross-Server Chat Plugin based on BungeeCord
 ## Plugin Feature
 
 - √ Minecraft Vanilla Style
-- √ Won't effect message processing plugin on your server
+- √ Won't effect message processing plugin on proxied server
 - √ Support Private Chat
 
 ## How to use
 
-Put `jar` file into `/plugins` folder in your Bungeecord server.
+Put `jar` file into `/plugins` folder in your Bungeecord server (not proxied server).
 
 ## Commands
 

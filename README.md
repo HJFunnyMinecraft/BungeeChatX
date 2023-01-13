@@ -14,7 +14,7 @@
 
 ## 如何使用
 
-将插件 `jar` 文件放入 Bungeecord 服务端 `/plugins` 目录下即可
+将插件 `jar` 文件放入 Bungeecord 服务端（不是下游服务器） `/plugins` 目录下即可
 
 ## 指令
 
