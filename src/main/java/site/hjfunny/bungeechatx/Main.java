@@ -21,11 +21,11 @@ import com.alibaba.fastjson.JSON;
 
 public final class Main extends Plugin {
 
-    public String PluginVersion = "v1.5.2";
-    public String LatestVersion = "";
-    public String GithubVerApiUrl = "https://api.github.com/repos/HJFunnyMinecraft/BungeeChatX/releases/latest";
+    public static String PluginVersion = "v1.5.2";
+    public static String LatestVersion = "";
+    public static String GithubVerApiUrl = "https://api.github.com/repos/HJFunnyMinecraft/BungeeChatX/releases/latest";
 
-    public static void chkUpdate() {
+    public void chkUpdate() {
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
         HttpGet httpGet = new HttpGet(GithubVerApiUrl);
         CloseableHttpResponse response = null;
@@ -38,30 +38,30 @@ public final class Main extends Plugin {
             result = EntityUtils.toString(responseEntity);
 
             if(status != 200) {
-                getLogger.info("Http-Status: " + status);
-                getLogger.info("§cError while checking the updates of the plugin");
-                getLogger.info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
+                getLogger().info("Http-Status: " + status);
+                getLogger().info("§cError while checking the updates of the plugin");
+                getLogger().info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
                 return;
             }
         } catch(SocketException e) {
             e.printStackTrace();
-            getLogger.info("§cError while checking the updates of the plugin");
-            getLogger.info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
+            getLogger().info("§cError while checking the updates of the plugin");
+            getLogger().info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
             return;
         } catch (ClientProtocolException e) {
             e.printStackTrace();
-            getLogger.info("§cError while checking the updates of the plugin");
-            getLogger.info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
+            getLogger().info("§cError while checking the updates of the plugin");
+            getLogger().info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
             return;
         } catch (ParseException e) {
             e.printStackTrace();
-            getLogger.info("§cError while checking the updates of the plugin");
-            getLogger.info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
+            getLogger().info("§cError while checking the updates of the plugin");
+            getLogger().info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
             return;
         } catch (IOException e) {
             e.printStackTrace();
-            getLogger.info("§cError while checking the updates of the plugin");
-            getLogger.info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
+            getLogger().info("§cError while checking the updates of the plugin");
+            getLogger().info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
             return;
         } finally {
             try {
@@ -73,8 +73,8 @@ public final class Main extends Plugin {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                getLogger.info("§cError while checking the updates of the plugin");
-                getLogger.info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
+                getLogger().info("§cError while checking the updates of the plugin");
+                getLogger().info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
                 return;
             }
         }
@@ -82,10 +82,10 @@ public final class Main extends Plugin {
         Map vermap = (Map) JSON.parse(result);
         LatestVersion = vermap.get("tag_name").toString();
         if(PluginVersion != LatestVersion) {
-            getLogger.info("§2§lNew Update Available!");
-            getLogger.info("§eGet update at §lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
+            getLogger().info("§2§lNew Update Available!");
+            getLogger().info("§eGet update at §lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
         } else {
-            getLogger.info("§2§lThis is the latest version!");
+            getLogger().info("§2§lThis is the latest version!");
         }
     }
     
