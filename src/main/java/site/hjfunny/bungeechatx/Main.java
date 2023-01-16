@@ -21,7 +21,7 @@ import com.alibaba.fastjson.JSON;
 
 public final class Main extends Plugin {
 
-    public static String PluginVersion = "v1.5.2";
+    public static String PluginVersion = "v1.5.3";
     public static String LatestVersion = "";
     public static String GithubVerApiUrl = "https://api.github.com/repos/HJFunnyMinecraft/BungeeChatX/releases/latest";
 
@@ -81,7 +81,7 @@ public final class Main extends Plugin {
 
         Map vermap = (Map) JSON.parse(result);
         LatestVersion = vermap.get("tag_name").toString();
-        if(PluginVersion != LatestVersion) {
+        if(!PluginVersion.equals(LatestVersion)) {
             getLogger().info("§2§lNew Update Available!");
             getLogger().info("§eGet update at §lhttps://github.com/HJFunnyMinecraft/BungeeChatX/releases/tag/" + LatestVersion);
         } else {
