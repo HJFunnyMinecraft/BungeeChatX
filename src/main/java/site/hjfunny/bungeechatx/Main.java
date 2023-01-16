@@ -79,7 +79,7 @@ public final class Main extends Plugin {
             }
         }
 
-        private Map vermap = (Map) JSON.parse(result);
+        Map vermap = (Map) JSON.parse(result);
         LatestVersion = vermap.get("tag_name").toString();
         if(PluginVersion != LatestVersion) {
             getLogger.info("§2§lNew Update Available!");
