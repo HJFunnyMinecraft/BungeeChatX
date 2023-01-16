@@ -83,7 +83,7 @@ public final class Main extends Plugin {
         LatestVersion = vermap.get("tag_name").toString();
         if(PluginVersion != LatestVersion) {
             getLogger().info("§2§lNew Update Available!");
-            getLogger().info("§eGet update at §lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
+            getLogger().info("§eGet update at §lhttps://github.com/HJFunnyMinecraft/BungeeChatX/releases/tag/" + LatestVersion);
         } else {
             getLogger().info("§2§lThis is the latest version!");
         }
