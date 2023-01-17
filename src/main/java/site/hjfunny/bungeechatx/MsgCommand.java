@@ -90,7 +90,7 @@ public class MsgCommand extends Command implements TabExecutor {
                 }
             } else {
                 for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()) {
-                    if(recPlayer.getName().substring(0, 0 + args[0].length() - 1).equals(args[0])) {
+                    if(recPlayer.getName().substring(0, 0 + args[0].length()).equalsIgnoreCase(args[0])) {
                         subCommands.add(recPlayer.getName());
                     }
                 }
