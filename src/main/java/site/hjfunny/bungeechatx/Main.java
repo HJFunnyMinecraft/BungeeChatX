@@ -21,7 +21,7 @@ import com.alibaba.fastjson.JSON;
 
 public final class Main extends Plugin {
 
-    public static String PluginVersion = "v1.5.4-BETA";
+    public static String PluginVersion = "v1.6";
     public static String LatestVersion = "";
     public static String GithubVerApiUrl = "https://api.github.com/repos/HJFunnyMinecraft/BungeeChatX/releases/latest";
 

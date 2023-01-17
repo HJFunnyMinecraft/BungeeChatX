@@ -85,7 +85,7 @@ public class MentionCommand extends Command implements TabExecutor {
                     recPlayer.sendMessage(otherMes);
                 }
             }
-            plugin.getLogger().info(displayPrefix + displayPrefix + displayMsg.toString());
+            plugin.getLogger().info(displayPrefix + mentionPrefix + displayMsg.toString());
         } else {
             sender.sendMessage("§c§l错误：§r玩家 §l" + args[0] + "§r 不存在！");
         }
