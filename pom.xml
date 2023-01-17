@@ -6,7 +6,7 @@
 
     <groupId>site.hjfunny</groupId>
     <artifactId>BungeeChatX</artifactId>
-    <version>1.5.3</version>
+    <version>1.5.4-BETA</version>
     <packaging>jar</packaging>
 
     <name>BungeeChatX</name>

@@ -21,7 +21,7 @@ import com.alibaba.fastjson.JSON;
 
 public final class Main extends Plugin {
 
-    public static String PluginVersion = "v1.5.3";
+    public static String PluginVersion = "v1.5.4-BETA";
     public static String LatestVersion = "";
     public static String GithubVerApiUrl = "https://api.github.com/repos/HJFunnyMinecraft/BungeeChatX/releases/latest";
 
@@ -103,7 +103,8 @@ public final class Main extends Plugin {
         getProxy().getPluginManager().registerListener(this, new ChatEvent(this));
 
         // 注册指令
-        getProxy().getPluginManager().registerCommand(this,new MsgCommand(this));
+        getProxy().getPluginManager().registerCommand(this, new MsgCommand(this));
+        getProxy().getPluginManager().registerCommand(this, new MentionCommand(this));
 
         // 注册 bStats
         int pluginId = 17333;
