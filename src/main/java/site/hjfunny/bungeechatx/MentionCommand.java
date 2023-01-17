@@ -70,7 +70,7 @@ public class MentionCommand extends Command implements TabExecutor {
 
         TextComponent mentionedMes = new TextComponent("");
         mentionedMes.addExtra(senderPrefix);
-        mentionedMes.addExtra(mentionPrefix);
+        mentionedMes.addExtra(mentionedPrefix);
         mentionedMes.addExtra(messageMain);
         TextComponent otherMes = new TextComponent("");
         otherMes.addExtra(senderPrefix);
@@ -85,7 +85,7 @@ public class MentionCommand extends Command implements TabExecutor {
                     recPlayer.sendMessage(otherMes);
                 }
             }
-            plugin.getLogger().info(senderPrefix + displayPrefix + displayMsg.toString());
+            plugin.getLogger().info(displayPrefix + displayPrefix + displayMsg.toString());
         } else {
             sender.sendMessage("§c§l错误：§r玩家 §l" + args[0] + "§r 不存在！");
         }
