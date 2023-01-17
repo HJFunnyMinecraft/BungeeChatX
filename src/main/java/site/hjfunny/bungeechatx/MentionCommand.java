@@ -39,32 +39,51 @@ public class MentionCommand extends Command implements TabExecutor {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if(args.length < 2) {
+        if(args.length < 1) {
             sender.sendMessage("§c§l错误：§r参数过少！");
             return;
         }
 
-        String displayPrefix = "[" + sender.getName() + "§l -> §r" + args[0] + "] ";
+        String displayPrefix = "<" + sender.getName() + "> ";
+        String mentionPrefix = "@" + args[0] + " ";
 
         StringBuilder displayMsg = new StringBuilder();
-        for (int i = 1; i < args.length; i++) {
-            displayMsg.append(args[i]).append(" ");
+        if(args.length > 1) {
+            for (int i = 1; i < args.length; i++) {
+                displayMsg.append(args[i]).append(" ");
+            }
         }
 
-        TextComponent sendPrefix = new TextComponent(displayPrefix);
-        sendPrefix.setColor(ChatColor.WHITE);
-        sendPrefix.setBold(false);
+        TextComponent senderPrefix = new TextComponent(displayPrefix);
+        senderPrefix.setColor(ChatColor.WHITE);
+        senderPrefix.setBold(false);
+        TextComponent mentionedPrefix = new TextComponent(mentionPrefix);
+        mentionedPrefix.setColor(ChatColor.GOLD);
+        mentionedPrefix.setBold(true);
+        TextComponent otherPrefix = new TextComponent(mentionPrefix);
+        otherPrefix.setColor(ChatColor.GRAY);
+        otherPrefix.setBold(false);
         TextComponent messageMain = new TextComponent(displayMsg.toString());
         messageMain.setColor(ChatColor.WHITE);
         messageMain.setBold(false);
 
-        sendPrefix.addExtra(messageMain);
+        TextComponent mentionedMes = new TextComponent("");
+        mentionedMes.addExtra(senderPrefix);
+        mentionedMes.addExtra(mentionPrefix);
+        mentionedMes.addExtra(messageMain);
+        TextComponent otherMes = new TextComponent("");
+        otherMes.addExtra(senderPrefix);
+        otherMes.addExtra(otherPrefix);
+        otherMes.addExtra(messageMain);
         
         ProxiedPlayer tplayer = ProxyServer.getInstance().getPlayer(args[0]);
         if (tplayer != null) {
-            tplayer.sendMessage(sendPrefix);
-            if(tplayer != sender) {
-                sender.sendMessage(sendPrefix);
+            for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
+                if(recPlayer.getName().equals(args[0])) {
+                    recPlayer.sendMessage(mentionedMes);
+                } else {
+                    recPlayer.sendMessage(otherMes);
+                }
             }
             plugin.getLogger().info(displayPrefix + displayMsg.toString());
         } else {

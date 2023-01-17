@@ -39,41 +39,32 @@ public class MsgCommand extends Command implements TabExecutor {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if(args.length < 1) {
+        if(args.length < 2) {
             sender.sendMessage("§c§l错误：§r参数过少！");
             return;
         }
 
-        String displayPrefix = "@" + args[0] + " ";
+        String displayPrefix = "[" + sender.getName() + "§l -> §r" + args[0] + "] ";
 
         StringBuilder displayMsg = new StringBuilder();
-        if(args.length > 1) {
-            for (int i = 1; i < args.length; i++) {
-                displayMsg.append(args[i]).append(" ");
-            }
+        for (int i = 1; i < args.length; i++) {
+            displayMsg.append(args[i]).append(" ");
         }
 
-        TextComponent mentionedPrefix = new TextComponent(displayPrefix);
-        mentionedPrefix.setColor(ChatColor.GOLD);
-        mentionedPrefix.setBold(true);
-        TextComponent otherPrefix = new TextComponent(displayPrefix);
-        otherPrefix.setColor(ChatColor.GRAY);
-        otherPrefix.setBold(false);
+        TextComponent sendPrefix = new TextComponent(displayPrefix);
+        sendPrefix.setColor(ChatColor.WHITE);
+        sendPrefix.setBold(false);
         TextComponent messageMain = new TextComponent(displayMsg.toString());
         messageMain.setColor(ChatColor.WHITE);
         messageMain.setBold(false);
 
-        mentionedPrefix.addExtra(messageMain);
-        otherPrefix.addExtra(messageMain);
+        sendPrefix.addExtra(messageMain);
         
         ProxiedPlayer tplayer = ProxyServer.getInstance().getPlayer(args[0]);
         if (tplayer != null) {
-            for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
-                if(recPlayer.getName().equals(args[0])) {
-                    recPlayer.sendMessage(mentionedPrefix);
-                } else {
-                    recPlayer.sendMessage(otherPrefix);
-                }
+            tplayer.sendMessage(sendPrefix);
+            if(tplayer != sender) {
+                sender.sendMessage(sendPrefix);
             }
             plugin.getLogger().info(displayPrefix + displayMsg.toString());
         } else {
