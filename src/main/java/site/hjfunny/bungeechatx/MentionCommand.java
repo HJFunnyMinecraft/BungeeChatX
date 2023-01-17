@@ -59,7 +59,7 @@ public class MentionCommand extends Command implements TabExecutor {
         senderPrefix.setColor(ChatColor.WHITE);
         senderPrefix.setBold(false);
         TextComponent mentionedPrefix = new TextComponent(mentionPrefix);
-        mentionedPrefix.setColor(ChatColor.GOLD);
+        mentionedPrefix.setColor(ChatColor.LIGHT_PURPLE);
         mentionedPrefix.setBold(true);
         TextComponent otherPrefix = new TextComponent(mentionPrefix);
         otherPrefix.setColor(ChatColor.GRAY);
@@ -76,9 +76,8 @@ public class MentionCommand extends Command implements TabExecutor {
         otherMes.addExtra(senderPrefix);
         otherMes.addExtra(otherPrefix);
         otherMes.addExtra(messageMain);
-        
-        ProxiedPlayer tplayer = ProxyServer.getInstance().getPlayer(args[0]);
-        if (tplayer != null) {
+
+        if (ProxyServer.getInstance().getPlayer(args[0]) != null) {
             for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
                 if(recPlayer.getName().equals(args[0])) {
                     recPlayer.sendMessage(mentionedMes);
@@ -86,7 +85,7 @@ public class MentionCommand extends Command implements TabExecutor {
                     recPlayer.sendMessage(otherMes);
                 }
             }
-            plugin.getLogger().info(displayPrefix + displayMsg.toString());
+            plugin.getLogger().info(senderPrefix + displayPrefix + displayMsg.toString());
         } else {
             sender.sendMessage("§c§l错误：§r玩家 §l" + args[0] + "§r 不存在！");
         }
