@@ -81,6 +81,7 @@ public class MsgCommand extends Command implements TabExecutor {
                 }
             } else {
                 for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()) {
+                    if(recPlayer.getName().length() < args[0].length()) continue;
                     if(recPlayer.getName().substring(0, 0 + args[0].length()).equalsIgnoreCase(args[0])) {
                         subCommands.add(recPlayer.getName());
                     }
