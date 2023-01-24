@@ -125,20 +125,26 @@ public final class Main extends Plugin {
     }*/
 
     public void LoadConfig() throws IOException {
-        if (!getDataFolder().exists()) {
-            getDataFolder().mkdir();
-        }
-    
-        File file = new File(getDataFolder(), "config.yml");
-    
-     
-        if (!file.exists()) {
-            try (InputStream in = getResourceAsStream("config.yml")) {
-                Files.copy(in, file.toPath());
-            } catch (IOException e) {
-                e.printStackTrace();
+        try {
+            ConfigurationProcesser.PluginConfig = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
+        } catch (IOException e) {
+            if (!getDataFolder().exists()) {
+                getDataFolder().mkdir();
             }
+            File file = new File(getDataFolder(), "config.yml");
+            if (!file.exists()) {
+                try (InputStream in = getResourceAsStream("config.yml")) {
+                    Files.copy(in, file.toPath());
+                } catch (IOException ee) {
+                    ee.printStackTrace();
+                }
+            }
+            getLogger().info("Default configuration file copied.");
+            ConfigurationProcesser.PluginConfig = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
+        } finally {
+            getLogger().info("Configuration file loaded.");
         }
+        
     }
     
     @Override
