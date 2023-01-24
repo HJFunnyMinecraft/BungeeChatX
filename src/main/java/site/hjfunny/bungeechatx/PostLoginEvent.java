@@ -17,17 +17,29 @@ public class PostLoginEvent implements Listener {
     
     @EventHandler
     public void onPostLogin(net.md_5.bungee.api.event.PostLoginEvent event){
-        if(!ProxiedPlayerList.JoinedPlayers.contains(event.getPlayer())) {
-            ProxiedPlayerList.JoinedPlayers.add(event.getPlayer());
-            plugin.getLogger().info(ConfigurationProcesser.PluginConfig.get("messages.playerJoinMessage").toString().replaceAll("%0%", event.getPlayer().getName()));
-        }
+            if(!ProxiedPlayerList.JoinedPlayers.contains(event.getPlayer())) {
+                ProxiedPlayerList.JoinedPlayers.add(event.getPlayer());
+                if(ConfigurationProcesser.PluginConfig.getBoolean("features.playerJoinMessage")) {
+                    String message = ConfigurationProcesser.PluginConfig.getString("messages.playerJoinMessage").replaceAll("%0%", event.getPlayer().getName());
+                    plugin.getLogger().info(message);
+                    for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
+                        recPlayer.sendMessage(message);
+                    }
+                }
+            }
         PlayerAddressMapping.playerMap.put(event.getPlayer().getSocketAddress(), event.getPlayer());
     }
 
     @EventHandler
     public void onLeave(PlayerDisconnectEvent event){
         ProxiedPlayerList.JoinedPlayers.remove(event.getPlayer());
-        plugin.getLogger().info(ConfigurationProcesser.PluginConfig.get("messages.playerLeaveMessage").toString().replaceAll("%0%", event.getPlayer().getName()));
+        if(ConfigurationProcesser.PluginConfig.getBoolean("features.playerJoinMessage")) {
+            String message = ConfigurationProcesser.PluginConfig.getString("messages.playerLeaveMessage").replaceAll("%0%", event.getPlayer().getName());
+                    plugin.getLogger().info(message);
+                    for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
+                        recPlayer.sendMessage(message);
+                    }
+        }
         PlayerAddressMapping.playerMap.remove(event.getPlayer().getSocketAddress());
     }
 }

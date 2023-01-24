@@ -1,3 +1,6 @@
+features:
+  playerJoinMessage: true
+  playerLeaveMessage: true
 messages:
   playerJoinMessage: '§a§l+ §r%0% joined the server group'
   playerLeaveMessage: '§8§l- §r%0% left the server group'
