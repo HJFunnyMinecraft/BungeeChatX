@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.SocketException;
+import java.nio.file.Files;
 import java.util.Map;
 
 import org.apache.http.HttpEntity;
@@ -98,7 +99,7 @@ public final class Main extends Plugin {
         }
     }
 
-    public void LoadConfig() throws IOException {
+    /*public void LoadConfig() throws IOException {
         try {
             ConfigurationProcesser.PluginConfig = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
         } catch (IOException e) {
@@ -120,6 +121,23 @@ public final class Main extends Plugin {
             ConfigurationProcesser.PluginConfig = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
         } finally {
             getLogger().info("Configuration file loaded.");
+        }
+    }*/
+
+    public void LoadConfig() throws IOException {
+        if (!getDataFolder().exists()) {
+            getDataFolder().mkdir();
+        }
+    
+        File file = new File(getDataFolder(), "config.yml");
+    
+     
+        if (!file.exists()) {
+            try (InputStream in = getResourceAsStream("config.yml")) {
+                Files.copy(in, file.toPath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
     
