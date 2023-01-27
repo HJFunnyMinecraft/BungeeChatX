@@ -18,4 +18,32 @@ Put `jar` file into `/plugins` folder in your Bungeecord server (not proxied ser
 
 ## Commands
 
-`/bcmsg` (Aliases：`/bctell` `/msgs` `/tells`): Private chat across servers
+### `/bcmsg`
+
+Aliases：`/bctell` `/msgs` `/tells`\
+Usage: `/bcmsg <PlayerName> <Message>`\
+Description: Private chat across servers
+
+### `/mention`
+
+Aliases: `/men`\
+Usage: `/mention <PlayerName> <Message>`\
+Description: Mention someone
+
+## Config File
+
+```yaml
+# Default Config
+features:
+  # Enable or disable some features
+  # If you want to enable, set to true
+  # If you want to disable, set to false
+  playerJoinMessage: true
+  playerLeaveMessage: true
+messages:
+  # Customsize your own message template
+  # You can translate all the messages to your language here
+  # Freely to use color code
+  playerJoinMessage: '§a§l+ §r%0% joined the server group' # %0% will be replaced by player's name
+  playerLeaveMessage: '§8§l- §r%0% left the server group' # %0% will be replaced by player's name  
+```
