@@ -31,11 +31,7 @@ public class ChatEvent implements Listener {
             displayServer = "[?] ";
             plugin.getLogger().info("Error while processing the server information of player '" + player.getName() + "'");
         } else {
-            try {
-                playerPrefix = ConfigurationProcesser.PluginConfig.getString("playerPrefix." + player.getName()) + " ";
-            } catch (Exception e) {
-                playerPrefix = "";
-            }
+            playerPrefix = ConfigurationProcesser.PluginConfig.getString("playerPrefix." + player.getName()) + " ";
             displayServer = playerPrefix + "[" + player.getServer().getInfo().getName() + "] ";
         }
         String displayName = "<" + player.getName() + "> ";
@@ -43,6 +39,9 @@ public class ChatEvent implements Listener {
         TextComponent messageSrv = new TextComponent(displayServer);
         messageSrv.setColor(ChatColor.AQUA);
         messageSrv.setBold(true);
+        TextComponent messagePlayerPrefix = new TextComponent(playerPrefix);
+        messagePlayerPrefix.setColor(ChatColor.RED);
+        messagePlayerPrefix.setBold(true);
         TextComponent messagePlayer = new TextComponent(displayName);
         messagePlayer.setColor(ChatColor.WHITE);
         messagePlayer.setBold(false);
@@ -52,6 +51,9 @@ public class ChatEvent implements Listener {
         messageMain.setColor(ChatColor.WHITE);
         messageMain.setBold(false);
         messageSrv.addExtra(messagePlayer);
+        if(playerPrefix != " ") {
+            messageSrv.addExtra(messagePlayerPrefix);
+        }
         messageSrv.addExtra(messageMain);
 
         for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
