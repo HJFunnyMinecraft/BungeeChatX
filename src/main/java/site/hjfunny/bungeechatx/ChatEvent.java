@@ -29,6 +29,7 @@ public class ChatEvent implements Listener {
         String displayServer, playerPrefix;
         if(player.getServer() == null) {
             displayServer = "[?] ";
+            playerPrefix = " ";
             plugin.getLogger().info("Error while processing the server information of player '" + player.getName() + "'");
         } else {
             playerPrefix = ConfigurationProcesser.PluginConfig.getString("playerPrefix." + player.getName()) + " ";
