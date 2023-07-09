@@ -50,7 +50,7 @@ public class ChatEvent implements Listener {
         messageSrv.addExtra(messagePlayer);
         messageSrv.addExtra(messageMain);
 
-        if(ConfigurationProcesser.PluginConfig.getBoolean("features.bannedWords") == true) {
+        if(ConfigurationProcesser.PluginConfig.getBoolean("features.bannedWords")) {
             plugin.getLogger().info("[BCX Debug] BannedWords Feature Enabled, scanning words...");
             List<String> bannedWords = ConfigurationProcesser.PluginConfig.getStringList("bannedWords.wordList");
             String sendedMessage = event.getMessage();

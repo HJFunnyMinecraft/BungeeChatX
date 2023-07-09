@@ -60,7 +60,7 @@ public class MsgCommand extends Command implements TabExecutor {
 
         sendPrefix.addExtra(messageMain);
 
-        if(ConfigurationProcesser.PluginConfig.getBoolean("features.bannedWords") == true) {
+        if(ConfigurationProcesser.PluginConfig.getBoolean("features.bannedWords")) {
             List<String> bannedWords = ConfigurationProcesser.PluginConfig.getStringList("bannedWords.wordList");
             String sendedMessage = displayMsg.toString();
             for (String word : bannedWords) {
