@@ -79,9 +79,9 @@ public class MentionCommand extends Command implements TabExecutor {
         
         if(ConfigurationProcesser.PluginConfig.getBoolean("features.bannedWords")) {
             List<String> bannedWords = ConfigurationProcesser.PluginConfig.getStringList("bannedWords.wordList");
-            String sendedMessage = displayMsg.toString();
+            String sendedMessage = displayMsg.toString().toLowerCase();
             for (String word : bannedWords) {
-                if (sendedMessage.contains(word)) {
+                if (sendedMessage.contains(word.toLowerCase())) {
                     plugin.getLogger().info("§c§l" + "[Banned Words Detected] " + "§r" + displayPrefix + mentionPrefix + displayMsg.toString());
                     sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.sendBannedWords").replaceAll("%0%", word));
                     return;
