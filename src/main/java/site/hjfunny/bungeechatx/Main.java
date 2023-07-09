@@ -153,7 +153,7 @@ public final class Main extends Plugin {
         Metrics metrics = new Metrics(this, pluginId);
 
         //检查更新
-        chkUpdate();
+        //chkUpdate();
 
         getLogger().info("§c§l[BungeeChatX]§r Enabled!");
     }
