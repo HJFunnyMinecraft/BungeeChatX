@@ -5,7 +5,7 @@ features:
 messages:
   playerJoinMessage: '§a§l+ §r%0% joined the server group'
   playerLeaveMessage: '§8§l- §r%0% left the server group'
-  sendBannedWords: 'You can't send the word %0%, it has been banned by your server operator.'
+  sendBannedWords: 'You can nott send the word %0%, it has been banned by your server operator.'
 bannedWords:
   wordList:
   - 'Fuck'
