@@ -13,6 +13,7 @@ import net.md_5.bungee.protocol.packet.Chat;
 import org.w3c.dom.Text;
 
 import java.util.Date;
+import java.util.List;
 
 public class ChatEvent implements Listener {
     private final Plugin plugin;
@@ -48,6 +49,18 @@ public class ChatEvent implements Listener {
         messageMain.setBold(false);
         messageSrv.addExtra(messagePlayer);
         messageSrv.addExtra(messageMain);
+
+        if(ConfigurationProcesser.PluginConfig.getBoolean("features.bannedWords") == true) {
+            List<String> bannedWords = ConfigurationProcesser.PluginConfig.getStringList("bannedWords.wordList");
+            String sendedMessage = event.getMessage();
+            for (String word : bannedWords) {
+                if (sendedMessage.contains(word)) {
+                    plugin.getLogger().info("§c§l" + "[Banned Words Detected] " + "§b§l" + displayServer + "§r " + displayName + " " + event.getMessage());
+                    player.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.sendBannedWords").replaceAll("%0%", word));
+                    return;
+                }
+            }
+        }
 
         for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
             if(recPlayer.getServer() == null) {

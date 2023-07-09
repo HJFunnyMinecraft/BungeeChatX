@@ -76,6 +76,18 @@ public class MentionCommand extends Command implements TabExecutor {
         otherMes.addExtra(senderPrefix);
         otherMes.addExtra(otherPrefix);
         otherMes.addExtra(messageMain);
+        
+        if(ConfigurationProcesser.PluginConfig.getBoolean("features.bannedWords") == true) {
+            List<String> bannedWords = ConfigurationProcesser.PluginConfig.getStringList("bannedWords.wordList");
+            String sendedMessage = displayMsg.toString();
+            for (String word : bannedWords) {
+                if (sendedMessage.contains(word)) {
+                    plugin.getLogger().info("§c§l" + "[Banned Words Detected] " + "§r" + displayPrefix + mentionPrefix + displayMsg.toString());
+                    sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.sendBannedWords").replaceAll("%0%", word));
+                    return;
+                }
+            }
+        }
 
         if (ProxyServer.getInstance().getPlayer(args[0]) != null) {
             for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
