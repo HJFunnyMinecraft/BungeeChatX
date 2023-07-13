@@ -25,8 +25,21 @@ public class ChatEvent implements Listener {
     @EventHandler
     public void onChat(net.md_5.bungee.api.event.ChatEvent event){
         if(event.isCommand()||event.isCancelled()||event.isProxyCommand()) return;
-
         ProxiedPlayer player = PlayerAddressMapping.playerMap.get(event.getSender().getSocketAddress());
+
+        String ProcessedMessage = event.getMessage();
+        if(ConfigurationProcesser.PluginConfig.getBoolean("features.bannedWords")) {
+            List<String> bannedWords = ConfigurationProcesser.PluginConfig.getStringList("bannedWords.wordList");
+            String sendedMessage = event.getMessage().toLowerCase();
+            for (String word : bannedWords) {
+                if (sendedMessage.contains(word.toLowerCase())) {
+                    plugin.getLogger().info("§c§l[Attention] " + player.getName() + " sended a message that contains banned word!");
+                    player.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.sendBannedWords").replaceAll("%0%", word));
+                    ProcessedMessage.replaceAll(word, " *** ");
+                }
+            }
+        }
+        
         String displayServer;
         if(player.getServer() == null) {
             displayServer = "[?] ";
@@ -44,24 +57,13 @@ public class ChatEvent implements Listener {
         messagePlayer.setBold(false);
         messagePlayer.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,new ComponentBuilder("TIME: "+ new Date()).create()));
         TextComponent messageSpace = new TextComponent(" ");
-        TextComponent messageMain = new TextComponent(event.getMessage());
+        TextComponent messageMain = new TextComponent(ProcessedMessage);
         messageMain.setColor(ChatColor.WHITE);
         messageMain.setBold(false);
         messageSrv.addExtra(messagePlayer);
         messageSrv.addExtra(messageMain);
 
-        if(ConfigurationProcesser.PluginConfig.getBoolean("features.bannedWords")) {
-            List<String> bannedWords = ConfigurationProcesser.PluginConfig.getStringList("bannedWords.wordList");
-            String sendedMessage = event.getMessage().toLowerCase();
-            for (String word : bannedWords) {
-                if (sendedMessage.contains(word.toLowerCase())) {
-                    plugin.getLogger().info("§c§l" + "[Banned Words Detected] " + "§b§l" + displayServer + "§r " + displayName + " " + event.getMessage());
-                    player.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.sendBannedWords").replaceAll("%0%", word));
-                    event.setCancelled(true);
-                    return;
-                }
-            }
-        }
+        
 
         for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
             if(recPlayer.getServer() == null) {
