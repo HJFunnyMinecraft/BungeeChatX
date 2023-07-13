@@ -41,7 +41,7 @@ public class MentionCommand extends Command implements TabExecutor {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if(args.length < 1) {
-            sender.sendMessage("§c§l错误：§r参数过少！");
+            sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand"));
             return;
         }
 
@@ -99,7 +99,7 @@ public class MentionCommand extends Command implements TabExecutor {
             }
             plugin.getLogger().info(displayPrefix + mentionPrefix + displayMsg.toString());
         } else {
-            sender.sendMessage("§c§l错误：§r玩家 §l" + args[0] + "§r 不存在！");
+            sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.playerNotFound").replaceAll("%0%", args[0]));
         }
     }
 
