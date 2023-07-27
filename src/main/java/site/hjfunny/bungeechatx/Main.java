@@ -147,6 +147,7 @@ public final class Main extends Plugin {
         // 注册指令
         getProxy().getPluginManager().registerCommand(this, new MsgCommand(this));
         getProxy().getPluginManager().registerCommand(this, new MentionCommand(this));
+        getProxy().getPluginManager().registerCommand(this, new PlayerRSCommand(this));
 
         // 注册 bStats
         int pluginId = 17333;
