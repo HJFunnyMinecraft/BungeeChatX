@@ -8,4 +8,5 @@ import java.util.Map;
 
 public class PlayerAddressMapping {
     static public Map<SocketAddress, ProxiedPlayer> playerMap = new HashMap<SocketAddress, ProxiedPlayer>();
+    static public Map<String, Boolean> playerRS = new HashMap<String, Boolean>();
 }

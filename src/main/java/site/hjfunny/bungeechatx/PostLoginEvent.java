@@ -28,6 +28,7 @@ public class PostLoginEvent implements Listener {
             }
         }
         PlayerAddressMapping.playerMap.put(event.getPlayer().getSocketAddress(), event.getPlayer());
+        PlayerAddressMapping.playerRS.put(event.getPlayer().getName(), true);
     }
 
     @EventHandler
@@ -41,5 +42,6 @@ public class PostLoginEvent implements Listener {
                     }
         }
         PlayerAddressMapping.playerMap.remove(event.getPlayer().getSocketAddress());
+        PlayerAddressMapping.playerRS.remove(event.getPlayer().getName());
     }
 }

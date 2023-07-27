@@ -93,7 +93,7 @@ public class MentionCommand extends Command implements TabExecutor {
             for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
                 if(recPlayer.getName().equals(args[0])) {
                     recPlayer.sendMessage(mentionedMes);
-                } else {
+                } else if(PlayerAddressMapping.playerRS.get(recPlayer.getName()) == true) {
                     recPlayer.sendMessage(otherMes);
                 }
             }
