@@ -42,6 +42,7 @@ public class PlayerRSCommand extends Command implements TabExecutor {
     public void execute(CommandSender sender, String[] args) {
         if(args.length != 1) {
             sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand"));
+            plugin.getLogger().warning("args low");
             return;
         }
         if(args[0] == "on") {
@@ -49,9 +50,10 @@ public class PlayerRSCommand extends Command implements TabExecutor {
             sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.playerRSOn"));
         } else if(args[0] == "off") {
             PlayerAddressMapping.playerRS.replace(sender.getName(), false);
-            sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.playerRSOn"));
+            sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.playerRSOff"));
         } else {
             sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand"));
+            plugin.getLogger().warning("args[0] wrong: " + args[0]);
         }
     }
 
