@@ -66,9 +66,8 @@ public class ChatEvent implements Listener {
         
 
         for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
-            plugin.getLogger().warning("The recPlayer: " + recPlayer.getName() + "'s playerRS Boolean is: " + PlayerAddressMapping.playerRS.get(recPlayer.getName()));
             if(recPlayer.getServer() == null) {
-                plugin.getLogger().info("Error while processing the server information of player '" + recPlayer.getName() + "', ignore it.");
+                plugin.getLogger().warning("Error while processing the server information of player '" + recPlayer.getName() + "', ignore it.");
             } else if(recPlayer.getServer().getInfo().getName() != player.getServer().getInfo().getName() && PlayerAddressMapping.playerRS.get(recPlayer.getName()) == true){
                 recPlayer.sendMessage(messageSrv);
             }
