@@ -55,7 +55,7 @@ public class ChatEvent implements Listener {
         TextComponent messageSrv = new TextComponent(displayServer);
         messageSrv.setColor(ChatColor.AQUA);
         messageSrv.setBold(true);
-        if(!playerPrefix.equals("")) {
+        if(playerPrefix != null) {
             TextComponent playerPrefixTC = new TextComponent("[" + playerPrefix + "]");
             playerPrefixTC.setColor(ChatColor.GOLD);
             messageSrv.addExtra(playerPrefixTC);
