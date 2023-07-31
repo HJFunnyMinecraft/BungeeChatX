@@ -56,8 +56,7 @@ public class ChatEvent implements Listener {
         messageSrv.setColor(ChatColor.AQUA);
         messageSrv.setBold(true);
         if(playerPrefix != null) {
-            TextComponent playerPrefixTC = new TextComponent("[" + playerPrefix + "]");
-            playerPrefixTC.setColor(ChatColor.GOLD);
+            TextComponent playerPrefixTC = new TextComponent("§r" + playerPrefix + " §r");
             messageSrv.addExtra(playerPrefixTC);
 
         }
@@ -82,6 +81,9 @@ public class ChatEvent implements Listener {
             }
         }
 
-        plugin.getLogger().info("§b§l" + displayServer + "§r " + displayName + " " + event.getMessage());
+        if(playerPrefix != null) {
+            plugin.getLogger().info("§b§l" + displayServer + "§r" + playerPrefix + " §r" + displayName + " " + event.getMessage());
+        }
+        
     }
 }
