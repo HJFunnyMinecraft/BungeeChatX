@@ -50,10 +50,17 @@ public class ChatEvent implements Listener {
             displayServer = "[" + player.getServer().getInfo().getName() + "] ";
         }
         String displayName = "<" + player.getName() + "> ";
+        String playerPrefix = PlayerPrefixGetter.getPlayerPrefix(player.getName());
 
         TextComponent messageSrv = new TextComponent(displayServer);
         messageSrv.setColor(ChatColor.AQUA);
         messageSrv.setBold(true);
+        if(!playerPrefix.equals("")) {
+            TextComponent playerPrefixTC = new TextComponent("[" + playerPrefix + "]");
+            playerPrefixTC.setColor(ChatColor.GOLD);
+            messageSrv.addExtra(playerPrefixTC);
+
+        }
         TextComponent messagePlayer = new TextComponent(displayName);
         messagePlayer.setColor(ChatColor.WHITE);
         messagePlayer.setBold(false);
