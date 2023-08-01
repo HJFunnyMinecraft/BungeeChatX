@@ -30,6 +30,12 @@ Aliases: `/men`\
 Usage: `/mention <PlayerName> <Message>`\
 Description: Mention someone
 
+### `/bcr`
+
+Aliases: `/r`\
+Usage: `/bcr <on/off>`\
+Description: Enable/disable cross-server message communication
+
 ## Config File
 
 ```yaml
@@ -40,9 +46,21 @@ features:
   # If you want to disable, set to false
   playerJoinMessage: true
   playerLeaveMessage: true
+  bannedWords: false
 messages:
   # Customsize your own message template
   # You can translate all the messages to your language here
   # Freely to use color code
   playerJoinMessage: '§a§l+ §r%0% joined the server group' # %0% will be replaced by player's name
-  playerLeaveMessage: '§8§l- §r%0% left the server group' # %0% will be replaced by player's name  
+  playerLeaveMessage: '§8§l- §r%0% left the server group' # %0% will be replaced by player's name
+  wrongCommand: '§c§lError: §rWrong command syntax!'
+  playerNotFound: '§c§lError: §rPlayer§l %0% §rnot found!' # %0% will be replaced by player's name
+  sendBannedWords: 'You can nott send the word [ %0% ], it has been banned by your server operator.' # %0% will be replaced by banned word
+  playerRSOn: 'You will receive messages from anywhere.'
+  playerRSOff: 'You will only receive messages from your server.'
+bannedWords:
+  wordList:
+  # The words you want to prevent players to send, require to enable bannedWords feature
+  - 'Fuck'
+  - 'Shit'
+```

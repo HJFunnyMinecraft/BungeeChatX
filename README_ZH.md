@@ -30,6 +30,12 @@
 用法：`/mention <玩家名> <消息>`
 描述：提及某人（@功能）
 
+### `/bcr`
+
+别名：`/r`\
+用法：`/bcr <on/off>`
+描述：开启/关闭消息互通
+
 ## 配置文件
 
 ```yaml
@@ -46,6 +52,16 @@ messages:
   # 自由地使用颜色代码
   playerJoinMessage: '§a§l+ §r%0% 加入了服务器群组' # %0% 将会被替换为玩家的名称
   playerLeaveMessage: '§8§l- §r%0% 离开了服务器群组' # %0% 将会被替换为玩家的名称
+  wrongCommand: '§c§l错误: §r代码语法错误！'
+  playerNotFound: '§c§l错误: §r玩家§l %0% §r不存在！' # %0% 将会被替换为玩家的名称
+  sendBannedWords: '你不允许发送文字 [ %0% ]，它已经被管理员禁用。' # %0% 将会被替换为玩家的名称
+  playerRSOn: '消息互通已开启，您将收到来自所有服务器的消息。'
+  playerRSOff: '消息互通已关闭，您将只收到来自您所在服务器的消息。'
+bannedWords:
+  wordList:
+  # 您想要不允许玩家发送的文字，需要启用“bannedWords“功能
+  - 'Fuck'
+  - 'Shit'
 ```
 
 ```
