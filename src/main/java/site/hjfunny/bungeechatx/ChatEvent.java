@@ -1,7 +1,6 @@
 package site.hjfunny.bungeechatx;
 
 import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -9,8 +8,6 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
-import net.md_5.bungee.protocol.packet.Chat;
-import org.w3c.dom.Text;
 
 import java.util.Date;
 import java.util.List;
@@ -25,7 +22,7 @@ public class ChatEvent implements Listener {
     @EventHandler
     public void onChat(net.md_5.bungee.api.event.ChatEvent event){
         if(event.isCommand()||event.isCancelled()||event.isProxyCommand()) return;
-        ProxiedPlayer player = PlayerAddressMapping.playerMap.get(event.getSender().getSocketAddress());
+        ProxiedPlayer player = PlayerDataProcesser.PlayerSocketMap.get(event.getSender().getSocketAddress());
 
         String ProcessedMessage = event.getMessage();
         if(ConfigurationProcesser.PluginConfig.getBoolean("features.bannedWords")) {
@@ -50,7 +47,7 @@ public class ChatEvent implements Listener {
             displayServer = "[" + player.getServer().getInfo().getName() + "] ";
         }
         String displayName = "<" + player.getName() + "> ";
-        String playerPrefix = PlayerPrefixGetter.getPlayerPrefix(player.getName());
+        String playerPrefix = PlayerDataProcesser.getPlayerPrefix(player.getName());
 
         TextComponent messageSrv = new TextComponent(displayServer);
         messageSrv.setColor(ChatColor.AQUA);
@@ -76,7 +73,7 @@ public class ChatEvent implements Listener {
         for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
             if(recPlayer.getServer() == null) {
                 plugin.getLogger().warning("Error while processing the server information of player '" + recPlayer.getName() + "', ignore it.");
-            } else if(recPlayer.getServer().getInfo().getName() != player.getServer().getInfo().getName() && PlayerAddressMapping.playerRS.get(recPlayer.getName()) == true){
+            } else if(recPlayer.getServer().getInfo().getName() != player.getServer().getInfo().getName() && PlayerDataProcesser.PlayerReceiveSettings.get(recPlayer.getName()) == true){
                 recPlayer.sendMessage(messageSrv);
             }
         }

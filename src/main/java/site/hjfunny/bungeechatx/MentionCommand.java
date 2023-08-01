@@ -8,7 +8,6 @@ import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.TabExecutor;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.protocol.packet.Chat;
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -93,7 +92,7 @@ public class MentionCommand extends Command implements TabExecutor {
             for(ProxiedPlayer recPlayer:plugin.getProxy().getPlayers()){
                 if(recPlayer.getName().equals(args[0])) {
                     recPlayer.sendMessage(mentionedMes);
-                } else if(PlayerAddressMapping.playerRS.get(recPlayer.getName()) == true) {
+                } else if(PlayerDataProcesser.PlayerReceiveSettings.get(recPlayer.getName()) == true) {
                     recPlayer.sendMessage(otherMes);
                 }
             }

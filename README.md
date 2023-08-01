@@ -1,49 +1,48 @@
 # BungeeChatX
 
-**中文** | [English](https://github.com/HJFunnyMinecraft/BungeeChatX/blob/main/README_EN.md)
+**English** | [中文](https://github.com/HJFunnyMinecraft/BungeeChatX/blob/main/README_ZH.md)
 
-基于 BungeeCord 的跨服聊天
+Cross-Server Chat Plugin based on BungeeCord
 
 ![bStats Data](https://bstats.org/signatures/bungeecord/bungeechatx.svg)
 
-## 插件特点
+## Plugin Feature
 
-- √ 原版风格
-- √ 不影响下游服务器消息处理插件
-- √ 支持私聊
+- √ Minecraft Vanilla Style
+- √ Won't effect message processing plugin on proxied server
+- √ Support Private Chat
 
-## 如何使用
+## How to use
 
-将插件 `jar` 文件放入 Bungeecord 服务端（不是下游服务器） `/plugins` 目录下即可
+Put `jar` file into `/plugins` folder in your Bungeecord server (not proxied server).
 
-## 指令
+## Commands
 
 ### `/bcmsg`
 
-别名：`/bctell` `/msgs` `/tells`\
-用法：`/bcmsg <玩家名> <消息>`\
-描述：跨服私聊
+Aliases：`/bctell` `/msgs` `/tells`\
+Usage: `/bcmsg <PlayerName> <Message>`\
+Description: Private chat across servers
 
 ### `/mention`
 
-别名：`/men`\
-用法：`/mention <玩家名> <消息>`
-描述：提及某人（@功能）
+Aliases: `/men`\
+Usage: `/mention <PlayerName> <Message>`\
+Description: Mention someone
 
-## 配置文件
+## Config File
 
 ```yaml
-# 默认配置
+# Default Config
 features:
-  # 启用或禁用某些功能
-  # 如果你想启用，设置为 true
-  # 如果你想禁用，设置为 false
+  # Enable or disable some features
+  # If you want to enable, set to true
+  # If you want to disable, set to false
   playerJoinMessage: true
   playerLeaveMessage: true
 messages:
-  # 自定义你的消息模板
-  # 你可以将其翻译为你的语言
-  # 自由地使用颜色代码
-  playerJoinMessage: '§a§l+ §r%0% 加入了服务器群组' # %0% 将会被替换为玩家的名称
-  playerLeaveMessage: '§8§l- §r%0% 离开了服务器群组' # %0% 将会被替换为玩家的名称
-```
+  # Customsize your own message template
+  # You can translate all the messages to your language here
+  # Freely to use color code
+  playerJoinMessage: '§a§l+ §r%0% joined the server group' # %0% will be replaced by player's name
+  playerLeaveMessage: '§8§l- §r%0% left the server group' # %0% will be replaced by player's name  

@@ -1,7 +1,5 @@
 package site.hjfunny.bungeechatx;
 
-import java.util.List;
-
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -17,8 +15,8 @@ public class PostLoginEvent implements Listener {
     
     @EventHandler
     public void onPostLogin(net.md_5.bungee.api.event.PostLoginEvent event){
-        if(!ProxiedPlayerList.JoinedPlayers.contains(event.getPlayer())) {
-            ProxiedPlayerList.JoinedPlayers.add(event.getPlayer());
+        if(!PlayerDataProcesser.JoinedPlayers.contains(event.getPlayer())) {
+            PlayerDataProcesser.JoinedPlayers.add(event.getPlayer());
             if(ConfigurationProcesser.PluginConfig.getBoolean("features.playerJoinMessage")) {
                 String message = ConfigurationProcesser.PluginConfig.getString("messages.playerJoinMessage").replaceAll("%0%", event.getPlayer().getName());
                 plugin.getLogger().info(message);
@@ -27,13 +25,13 @@ public class PostLoginEvent implements Listener {
                 }
             }
         }
-        PlayerAddressMapping.playerMap.put(event.getPlayer().getSocketAddress(), event.getPlayer());
-        PlayerAddressMapping.playerRS.put(event.getPlayer().getName(), true);
+        PlayerDataProcesser.PlayerSocketMap.put(event.getPlayer().getSocketAddress(), event.getPlayer());
+        PlayerDataProcesser.PlayerReceiveSettings.put(event.getPlayer().getName(), true);
     }
 
     @EventHandler
     public void onLeave(PlayerDisconnectEvent event){
-        ProxiedPlayerList.JoinedPlayers.remove(event.getPlayer());
+        PlayerDataProcesser.JoinedPlayers.remove(event.getPlayer());
         if(ConfigurationProcesser.PluginConfig.getBoolean("features.playerJoinMessage")) {
             String message = ConfigurationProcesser.PluginConfig.getString("messages.playerLeaveMessage").replaceAll("%0%", event.getPlayer().getName());
                     plugin.getLogger().info(message);
@@ -41,7 +39,7 @@ public class PostLoginEvent implements Listener {
                         recPlayer.sendMessage(message);
                     }
         }
-        PlayerAddressMapping.playerMap.remove(event.getPlayer().getSocketAddress());
-        PlayerAddressMapping.playerRS.remove(event.getPlayer().getName());
+        PlayerDataProcesser.PlayerSocketMap.remove(event.getPlayer().getSocketAddress());
+        PlayerDataProcesser.PlayerReceiveSettings.remove(event.getPlayer().getName());
     }
 }

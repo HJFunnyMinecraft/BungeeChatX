@@ -7,7 +7,6 @@ import net.md_5.bungee.config.YamlConfiguration;
 import org.bstats.bungeecord.Metrics;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.SocketException;
@@ -15,7 +14,6 @@ import java.nio.file.Files;
 import java.util.Map;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpRequest;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -119,7 +117,6 @@ public final class Main extends Plugin {
         } finally {
             getLogger().info("Configuration file loaded.");
         }
-        
     }
     
     @Override
@@ -147,11 +144,10 @@ public final class Main extends Plugin {
         // 注册指令
         getProxy().getPluginManager().registerCommand(this, new MsgCommand(this));
         getProxy().getPluginManager().registerCommand(this, new MentionCommand(this));
-        getProxy().getPluginManager().registerCommand(this, new PlayerRSCommand(this));
+        getProxy().getPluginManager().registerCommand(this, new ReceiveSettingsCommand(this));
 
         // 注册 bStats
-        int pluginId = 17333;
-        Metrics metrics = new Metrics(this, pluginId);
+        Metrics metrics = new Metrics(this, 17333);
 
         //检查更新
         chkUpdate();
