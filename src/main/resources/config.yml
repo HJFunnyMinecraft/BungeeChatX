@@ -7,6 +7,7 @@ messages:
   playerLeaveMessage: '§8§l- §r%0% left the server group'
   wrongCommand: '§c§lError: §rWrong command syntax!'
   playerNotFound: '§c§lError: §rPlayer§l %0% §rnot found!'
+  noPermission: '§c§lError: §rYou dont have permission to do that!'
   sendBannedWords: 'You can nott send the word [ %0% ], it has been banned by your server operator.'
   playerRSOn: 'You will receive messages from anywhere.'
   playerRSOff: 'You will only receive messages from your server.'

@@ -30,9 +30,6 @@ public final class Main extends Plugin {
     public static String LatestVersion = "";
     public static String GithubVerApiUrl = "https://api.github.com/repos/HJFunnyMinecraft/BungeeChatX/releases/latest";
 
-    /**
-     * @apiNote Check update from Github
-     */
     public void chkUpdate() {
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
         HttpGet httpGet = new HttpGet(GithubVerApiUrl);
@@ -130,27 +127,32 @@ public final class Main extends Plugin {
         getLogger().info("§c                   |___/                                      §r");
         getLogger().info("Plugin by §bCodeZhangBorui & bcmray§r, §b" + PluginVersion + "§r, §lLoading...§r");
         
-        // 加载配置
+        // Load Config
         try {
             LoadConfig();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        // 注册监听器
+        // Register Listener
         getProxy().getPluginManager().registerListener(this, new PostLoginEvent(this));
         getProxy().getPluginManager().registerListener(this, new ChatEvent(this));
 
-        // 注册指令
+        // Register Command
         getProxy().getPluginManager().registerCommand(this, new MsgCommand(this));
         getProxy().getPluginManager().registerCommand(this, new MentionCommand(this));
         getProxy().getPluginManager().registerCommand(this, new ReceiveSettingsCommand(this));
 
-        // 注册 bStats
+        // Register bStats
         Metrics metrics = new Metrics(this, 17333);
 
-        //检查更新
+        // Check Updates
         chkUpdate();
+
+        // Register LuckPerms Provider
+        if(PlayerDataProcesser.initLuckpermsProvider() == false) {
+            getLogger().warning("§c§l[BungeeChatX]§r The plugin cannot connect to Luckperms, disable the player prefix feature...");
+        }
 
         getLogger().info("§c§l[BungeeChatX]§r Enabled!");
     }

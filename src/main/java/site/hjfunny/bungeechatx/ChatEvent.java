@@ -22,7 +22,14 @@ public class ChatEvent implements Listener {
     @EventHandler
     public void onChat(net.md_5.bungee.api.event.ChatEvent event){
         if(event.isCommand()||event.isCancelled()||event.isProxyCommand()) return;
+
         ProxiedPlayer player = PlayerDataProcesser.PlayerSocketMap.get(event.getSender().getSocketAddress());
+
+        if(!(player.hasPermission("group.default") || player.hasPermission("bcx.chat"))) {
+            player.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.noPermission"));
+            event.setCancelled(true);
+            return;
+        }
 
         String ProcessedMessage = event.getMessage();
         if(ConfigurationProcesser.PluginConfig.getBoolean("features.bannedWords")) {
@@ -33,8 +40,6 @@ public class ChatEvent implements Listener {
                     plugin.getLogger().info("§c§l[Attention] " + player.getName() + " sended a message that contains banned word!");
                     event.setCancelled(true);
                     return;
-                    //player.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.sendBannedWords").replaceAll("%0%", word));
-                    //ProcessedMessage.replaceAll(word, " *** ");
                 }
             }
         }
@@ -61,7 +66,6 @@ public class ChatEvent implements Listener {
         messagePlayer.setColor(ChatColor.WHITE);
         messagePlayer.setBold(false);
         messagePlayer.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,new ComponentBuilder("TIME: "+ new Date()).create()));
-        TextComponent messageSpace = new TextComponent(" ");
         TextComponent messageMain = new TextComponent(ProcessedMessage);
         messageMain.setColor(ChatColor.WHITE);
         messageMain.setBold(false);

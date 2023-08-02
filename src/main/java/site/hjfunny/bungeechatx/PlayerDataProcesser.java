@@ -15,9 +15,19 @@ public class PlayerDataProcesser {
     static public Map<SocketAddress, ProxiedPlayer> PlayerSocketMap = new HashMap<SocketAddress, ProxiedPlayer>();
     static public List<ProxiedPlayer> JoinedPlayers = new ArrayList<ProxiedPlayer>();
     static public Map<String, Boolean> PlayerReceiveSettings = new HashMap<String, Boolean>();
-    
+    static public LuckPerms luckPerms;
+
+    public static Boolean initLuckpermsProvider() {
+        try {
+            luckPerms = LuckPermsProvider.get();
+        } catch (IllegalStateException e) {
+            luckPerms = null;
+            return false;
+        }
+        return true;
+    }
     public static String getPlayerPrefix(String playerName) {
-        LuckPerms luckPerms = LuckPermsProvider.get();
+        if(luckPerms == null) return null; // Return null if Luckperms hasn't installed.
         User user = luckPerms.getUserManager().getUser(playerName);
         if (user == null) {
             // Player Not Found
