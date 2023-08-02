@@ -25,7 +25,7 @@ public class ChatEvent implements Listener {
 
         ProxiedPlayer player = PlayerDataProcesser.PlayerSocketMap.get(event.getSender().getSocketAddress());
 
-        if(!(player.hasPermission("group.default") || player.hasPermission("bcx.chat"))) {
+        if(!player.hasPermission("group.default") && !player.hasPermission("bcx.chat")) {
             player.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.noPermission"));
             event.setCancelled(true);
             return;

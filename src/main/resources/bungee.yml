@@ -3,3 +3,4 @@ author: bcmray & CodeZhangBorui
 version: '${project.version}'
 main: site.hjfunny.bungeechatx.Main
 description: BungeeCord 跨服聊天插件
+softdepend: [LuckPerms]
