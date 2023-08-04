@@ -85,7 +85,7 @@ public class ChatEvent implements Listener {
         if(playerPrefix != null) {
             plugin.getLogger().info("§b§l" + displayServer + "§r" + playerPrefix + " §r" + displayName + " " + event.getMessage());
         } else {
-            plugin.getLogger().info("§b§l" + displayServer + displayName + " " + event.getMessage());
+            plugin.getLogger().info("§b§l" + displayServer + "§r" + displayName + " " + event.getMessage());
         }
         
     }
