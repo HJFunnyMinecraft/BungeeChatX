@@ -13,7 +13,7 @@
 
     <description>BungeeCord 跨服聊天插件</description>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>1.17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -37,7 +37,6 @@
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <!-- Replace this with your package! -->
                             <shadedPattern>site.hjfunny.bungeechatx</shadedPattern>
                         </relocation>
                     </relocations>
@@ -72,28 +71,32 @@
     </repositories>
 
     <dependencies>
+        <!-- https://repo.papermc.io/#browse/browse:maven-snapshots:io%2Fgithub%2Fwaterfallmc -->
         <dependency>
             <groupId>io.github.waterfallmc</groupId>
             <artifactId>waterfall-api</artifactId>
-            <version>1.19-R0.1-SNAPSHOT</version>
+            <version>1.20-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.bstats/bstats-bungeecord -->
         <dependency>
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bungeecord</artifactId>
-            <version>3.0.0</version>
-            <scope>compile</scope>
+            <version>3.0.2</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.5.12</version>
+            <version>4.5.14</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
         <dependency>
-            <groupId>com.alibaba.fastjson2</groupId>
-            <artifactId>fastjson2</artifactId>
-            <version>2.0.23</version>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20230618</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/net.luckperms/api -->
         <dependency>
             <groupId>net.luckperms</groupId>
             <artifactId>api</artifactId>

@@ -1,28 +1,22 @@
 package site.hjfunny.bungeechatx;
 
-import net.md_5.bungee.api.plugin.Plugin;
-import net.md_5.bungee.config.ConfigurationProvider;
-import net.md_5.bungee.config.YamlConfiguration;
-
-import org.bstats.bungeecord.Metrics;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.SocketException;
 import java.nio.file.Files;
-import java.util.Map;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.ParseException;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.bstats.bungeecord.Metrics;
+import org.json.JSONObject;
 
-import com.alibaba.fastjson2.JSON;
+import net.md_5.bungee.api.plugin.Plugin;
+import net.md_5.bungee.config.ConfigurationProvider;
+import net.md_5.bungee.config.YamlConfiguration;
 
 public final class Main extends Plugin {
 
@@ -68,9 +62,15 @@ public final class Main extends Plugin {
                 return;
             }
         }
+        try {
+            LatestVersion = new JSONObject(result).getString("tag_name");
+        } catch (Exception e) {
+            e.printStackTrace();
+            getLogger().info("§cError while checking the updates of the plugin");
+            getLogger().info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
+            return;
+        }
 
-        Map vermap = (Map) JSON.parse(result);
-        LatestVersion = vermap.get("tag_name").toString();
         if(!PluginVersion.equals(LatestVersion)) {
             getLogger().info("§2§lNew Update Available!");
             getLogger().info("§eGet update at §lhttps://github.com/HJFunnyMinecraft/BungeeChatX/releases/tag/" + LatestVersion);
