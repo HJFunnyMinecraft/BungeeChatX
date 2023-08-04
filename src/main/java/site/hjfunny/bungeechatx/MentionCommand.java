@@ -40,10 +40,12 @@ public class MentionCommand extends Command implements TabExecutor {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if(args.length < 1) {
-            sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand"));
+            // Wrong command syntax
+            sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand")));
             return;
         }
 
+        // Build message
         String displayPrefix = "<" + sender.getName() + "> ";
         String mentionPrefix = "@" + args[0] + " ";
 
@@ -82,7 +84,7 @@ public class MentionCommand extends Command implements TabExecutor {
             for (String word : bannedWords) {
                 if (sendedMessage.contains(word.toLowerCase())) {
                     plugin.getLogger().info("§c§l" + "[Banned Words Detected] " + "§r" + displayPrefix + mentionPrefix + displayMsg.toString());
-                    sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.sendBannedWords").replaceAll("%0%", word));
+                    sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.sendBannedWords").replaceAll("%0%", word)));
                     return;
                 }
             }
@@ -98,7 +100,7 @@ public class MentionCommand extends Command implements TabExecutor {
             }
             plugin.getLogger().info(displayPrefix + mentionPrefix + displayMsg.toString());
         } else {
-            sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.playerNotFound").replaceAll("%0%", args[0]));
+            sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.playerNotFound").replaceAll("%0%", args[0])));
         }
     }
 

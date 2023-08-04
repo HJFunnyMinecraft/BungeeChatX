@@ -1,14 +1,15 @@
 package site.hjfunny.bungeechatx;
 
-import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.plugin.Command;
-import net.md_5.bungee.api.plugin.TabExecutor;
-import net.md_5.bungee.api.plugin.Plugin;
-
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
+
+import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.plugin.Command;
+import net.md_5.bungee.api.plugin.Plugin;
+import net.md_5.bungee.api.plugin.TabExecutor;
 
 public class ReceiveSettingsCommand extends Command implements TabExecutor {
     private final Plugin plugin;
@@ -36,17 +37,21 @@ public class ReceiveSettingsCommand extends Command implements TabExecutor {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if(args.length != 1) {
-            sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand"));
+            // Wrong command syntax
+            sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand")));
             return;
         }
         if(args[0].equals("on")) {
+            // Enable cross-server messages communication
             PlayerDataProcesser.PlayerReceiveSettings.replace(sender.getName(), true);
-            sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.playerRSOn"));
+            sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.playerRSOn")));
         } else if(args[0].equals("off")) {
+            // Disable cross-server messages communication
             PlayerDataProcesser.PlayerReceiveSettings.replace(sender.getName(), false);
-            sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.playerRSOff"));
+            sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.playerRSOff")));
         } else {
-            sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand"));
+            // Wrong command syntax
+            sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand")));
         }
     }
 

@@ -1,16 +1,16 @@
 package site.hjfunny.bungeechatx;
 
+// import java.util.Date;
+import java.util.List;
+
 import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.chat.HoverEvent;
+// import net.md_5.bungee.api.chat.ComponentBuilder;
+// import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
-
-import java.util.Date;
-import java.util.List;
 
 public class ChatEvent implements Listener {
     private final Plugin plugin;
@@ -59,7 +59,7 @@ public class ChatEvent implements Listener {
         TextComponent messagePlayer = new TextComponent(displayName);
         messagePlayer.setColor(ChatColor.WHITE);
         messagePlayer.setBold(false);
-        messagePlayer.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,new ComponentBuilder("TIME: "+ new Date()).create()));
+        // messagePlayer.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,new ComponentBuilder("TIME: "+ new Date()).create()));
         TextComponent messageMain = new TextComponent(ProcessedMessage);
         messageMain.setColor(ChatColor.WHITE);
         messageMain.setBold(false);

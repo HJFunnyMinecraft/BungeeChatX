@@ -1,18 +1,18 @@
 package site.hjfunny.bungeechatx;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
-import net.md_5.bungee.api.plugin.TabExecutor;
 import net.md_5.bungee.api.plugin.Plugin;
-import net.md_5.bungee.api.ProxyServer;
-
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
+import net.md_5.bungee.api.plugin.TabExecutor;
 
 public class MsgCommand extends Command implements TabExecutor {
     private final Plugin plugin;
@@ -40,12 +40,15 @@ public class MsgCommand extends Command implements TabExecutor {
     @Override
     public void execute(CommandSender sender, String[] args) {
         if(args.length < 2) {
-            sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand"));
+            // Wrong command syntax
+            sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand")));
             return;
         }
 
+        // Build display prefix like "[Steve -> Alex] "
         String displayPrefix = "[" + sender.getName() + "§l -> §r" + args[0] + "] ";
 
+        // Build messages
         StringBuilder displayMsg = new StringBuilder();
         for (int i = 1; i < args.length; i++) {
             displayMsg.append(args[i]).append(" ");
@@ -61,26 +64,29 @@ public class MsgCommand extends Command implements TabExecutor {
         sendPrefix.addExtra(messageMain);
 
         if(ConfigurationProcesser.PluginConfig.getBoolean("features.bannedWords")) {
-            List<String> bannedWords = ConfigurationProcesser.PluginConfig.getStringList("bannedWords.wordList");
+            // Scan for banned words
+            List<String> bannedWords = ConfigurationProcesser.PluginConfig.getStringList("bannedWords.wordList"); // Get words list from configuration processer
             String sendedMessage = displayMsg.toString().toLowerCase();
             for (String word : bannedWords) {
                 if (sendedMessage.contains(word.toLowerCase())) {
                     plugin.getLogger().info("§c§l" + "[Banned Words Detected] " + "§r" + displayPrefix + displayMsg.toString());
-                    sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.sendBannedWords").replaceAll("%0%", word));
-                    return;
+                    sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.sendBannedWords").replaceAll("%0%", word)));
+                    return; // Refuse to execute
                 }
             }
         }
         
-        ProxiedPlayer tplayer = ProxyServer.getInstance().getPlayer(args[0]);
+        ProxiedPlayer tplayer = ProxyServer.getInstance().getPlayer(args[0]); // Get target player
         if (tplayer != null) {
+            // Target player found
             tplayer.sendMessage(sendPrefix);
-            if(tplayer != sender) {
+            if(tplayer != sender) { // Send once if you send message to yourself
                 sender.sendMessage(sendPrefix);
             }
             plugin.getLogger().info(displayPrefix + displayMsg.toString());
         } else {
-            sender.sendMessage(ConfigurationProcesser.PluginConfig.getString("messages.playerNotFound").replaceAll("%0%", args[0]));
+            // Target player not found
+            sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.playerNotFound").replaceAll("%0%", args[0])));
         }
     }
 
