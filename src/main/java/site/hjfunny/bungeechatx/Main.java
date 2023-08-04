@@ -48,22 +48,7 @@ public final class Main extends Plugin {
                 getLogger().info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
                 return;
             }
-        } catch(SocketException e) {
-            e.printStackTrace();
-            getLogger().info("§cError while checking the updates of the plugin");
-            getLogger().info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
-            return;
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-            getLogger().info("§cError while checking the updates of the plugin");
-            getLogger().info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
-            return;
-        } catch (ParseException e) {
-            e.printStackTrace();
-            getLogger().info("§cError while checking the updates of the plugin");
-            getLogger().info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
-            return;
-        } catch (IOException e) {
+        } catch(Exception e) {
             e.printStackTrace();
             getLogger().info("§cError while checking the updates of the plugin");
             getLogger().info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
@@ -76,7 +61,7 @@ public final class Main extends Plugin {
                 if (response != null) {
                     response.close();
                 }
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 getLogger().info("§cError while checking the updates of the plugin");
                 getLogger().info("§cCheck updates manually at §e§lhttps://github.com/HJFunnyMinecraft/BungeeChatX");
