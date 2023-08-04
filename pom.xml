@@ -13,7 +13,7 @@
 
     <description>BungeeCord 跨服聊天插件</description>
     <properties>
-        <java.version>1.17</java.version>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
