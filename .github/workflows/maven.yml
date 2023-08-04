@@ -16,7 +16,7 @@ jobs:
     - name: 建立 JDK 8
       uses: actions/setup-java@v3
       with:
-        distribution: 'oracle' # See 'Supported distributions' for available options
+        distribution: 'temurin' # See 'Supported distributions' for available options
         java-version: '8'
         cache: 'maven'
     
