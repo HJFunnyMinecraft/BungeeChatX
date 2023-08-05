@@ -30,7 +30,14 @@ public class ConfigurationProcesser {
                 }
             }
             plugin.getLogger().info("Default configuration file copied.");
-            ConfigurationProcesser.PluginConfig = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(plugin.getDataFolder(), "config.yml"));
+            try {
+                ConfigurationProcesser.PluginConfig = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(plugin.getDataFolder(), "config.yml"));
+            } catch (Exception eee) {
+                eee.printStackTrace();
+                plugin.getLogger().warning("Error while proceeding the YAML file. Check above and modify the file.");
+                return false;
+            }
+            
         } finally {
             plugin.getLogger().info("Configuration file loaded.");
         }
