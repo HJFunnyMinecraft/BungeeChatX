@@ -1,10 +1,6 @@
 package site.hjfunny.bungeechatx;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -15,8 +11,7 @@ import org.bstats.bungeecord.Metrics;
 import org.json.JSONObject;
 
 import net.md_5.bungee.api.plugin.Plugin;
-import net.md_5.bungee.config.ConfigurationProvider;
-import net.md_5.bungee.config.YamlConfiguration;
+import net.md_5.bungee.config.Configuration;
 
 public final class Main extends Plugin {
 
@@ -79,27 +74,7 @@ public final class Main extends Plugin {
         }
     }
 
-    public void LoadConfig() throws IOException {
-        try {
-            ConfigurationProcesser.PluginConfig = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
-        } catch (IOException e) {
-            if (!getDataFolder().exists()) {
-                getDataFolder().mkdir();
-            }
-            File file = new File(getDataFolder(), "config.yml");
-            if (!file.exists()) {
-                try (InputStream in = getResourceAsStream("config.yml")) {
-                    Files.copy(in, file.toPath());
-                } catch (IOException ee) {
-                    ee.printStackTrace();
-                }
-            }
-            getLogger().info("Default configuration file copied.");
-            ConfigurationProcesser.PluginConfig = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
-        } finally {
-            getLogger().info("Configuration file loaded.");
-        }
-    }
+    
     
     @Override
     public void onEnable() {
@@ -113,10 +88,19 @@ public final class Main extends Plugin {
         getLogger().info("Plugin by §bCodeZhangBorui & bcmray§r, §b" + PluginVersion + "§r, §lLoading...§r");
         
         // Load Config
+        Boolean loadStatus = false;
         try {
-            LoadConfig();
+            loadStatus = ConfigurationProcesser.LoadConfig(this);
         } catch (IOException e) {
             e.printStackTrace();
+            getLogger().warning("Plugin config load failed, the plugin won't work properly!");
+            ConfigurationProcesser.PluginConfig = new Configuration();
+            return;
+        }
+        if(loadStatus == false) {
+            getLogger().warning("Plugin config load failed, the plugin won't work properly!");
+            ConfigurationProcesser.PluginConfig = new Configuration();
+            return;
         }
 
         // Register Listener
@@ -127,6 +111,7 @@ public final class Main extends Plugin {
         getProxy().getPluginManager().registerCommand(this, new MsgCommand(this));
         getProxy().getPluginManager().registerCommand(this, new MentionCommand(this));
         getProxy().getPluginManager().registerCommand(this, new ReceiveSettingsCommand(this));
+        getProxy().getPluginManager().registerCommand(this, new BcxCommand(this));
 
         // Register bStats
         Metrics metrics = new Metrics(this, 17333);

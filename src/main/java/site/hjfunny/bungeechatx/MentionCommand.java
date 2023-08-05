@@ -41,7 +41,7 @@ public class MentionCommand extends Command implements TabExecutor {
     public void execute(CommandSender sender, String[] args) {
         if(args.length < 1) {
             // Wrong command syntax
-            sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand")));
+            sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand") + " (/mention <player> <message>)"));
             return;
         }
 

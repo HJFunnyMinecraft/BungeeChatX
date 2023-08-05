@@ -16,6 +16,7 @@ public class PlayerDataProcesser {
     static public List<ProxiedPlayer> JoinedPlayers = new ArrayList<ProxiedPlayer>();
     static public Map<String, Boolean> PlayerReceiveSettings = new HashMap<String, Boolean>();
     static public LuckPerms luckPerms;
+    static public Boolean luckPermsStatus;
 
     public static Boolean initLuckpermsProvider() {
         // Initalize LuckPerms API Provider
@@ -24,8 +25,10 @@ public class PlayerDataProcesser {
         } catch (IllegalStateException e) {
             // LuckPerms hasn't installed or enabled
             luckPerms = null;
+            luckPermsStatus = false;
             return false;
         }
+        luckPermsStatus = true;
         return true;
     }
     public static String getPlayerPrefix(String playerName) {

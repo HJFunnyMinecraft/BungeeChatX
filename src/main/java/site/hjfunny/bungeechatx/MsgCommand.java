@@ -70,7 +70,7 @@ public class MsgCommand extends Command implements TabExecutor {
             for (String word : bannedWords) {
                 if (sendedMessage.contains(word.toLowerCase())) {
                     plugin.getLogger().info("§c§l" + "[Banned Words Detected] " + "§r" + displayPrefix + displayMsg.toString());
-                    sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.sendBannedWords").replaceAll("%0%", word)));
+                    sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.sendBannedWords").replaceAll("%0%", word) + " (/bcmsg <player> <message>)"));
                     return; // Refuse to execute
                 }
             }
