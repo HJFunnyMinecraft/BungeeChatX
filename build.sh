@@ -1,1 +1,4 @@
-mvn -B package --file pom.xml && mkdir staging && cp target/*.jar staging
+mvn -B package --file pom.xml
+rm -rf stagging
+mkdir staging
+cp target/*.jar staging
