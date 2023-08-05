@@ -37,7 +37,10 @@ public class ConfigurationProcesser {
                 plugin.getLogger().warning("Error while proceeding the YAML file. Check above and modify the file.");
                 return false;
             }
-            
+        } catch (Exception eee) {
+            eee.printStackTrace();
+            plugin.getLogger().warning("Error while proceeding the YAML file. Check above and modify the file, then run /bcx reload.");
+            return false;
         } finally {
             plugin.getLogger().info("Configuration file loaded.");
         }
