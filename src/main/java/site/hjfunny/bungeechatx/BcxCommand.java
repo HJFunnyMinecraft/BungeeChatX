@@ -41,6 +41,7 @@ public class BcxCommand extends Command implements TabExecutor {
         if(!sender.hasPermission("bcx.reload")) {
             // Just get the status
             sender.sendMessage(new TextComponent("§b§l[BungeeChatX]§r The server is running BungeeChatX Version " + plugin.getDescription().getVersion().toString()));
+            sender.sendMessage(new TextComponent("You have no permission to execute any sub coommands"));
             return;
         }
 
@@ -53,11 +54,11 @@ public class BcxCommand extends Command implements TabExecutor {
             // Wrong command syntax
             sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand") + " (/bcx [status|reload])"));
         }
-        if(args[0] == "status") {
+        if(args[0].equals("status")) {
             sender.sendMessage(new TextComponent("§b§l[BungeeChatX Status]§r"));
             sender.sendMessage(new TextComponent("§eThe Number of Proceedable Players: §r" + PlayerDataProcesser.JoinedPlayers.size()));
             sender.sendMessage(new TextComponent("§eLuckPerms Connecter: §r" + (PlayerDataProcesser.luckPermsStatus ? "Connected" : "Not Connect")));
-        } else if(args[0] == "reload") {
+        } else if(args[0].equals("reload")) {
             // Reload the config.yml
             Boolean reloadStatus = false;
             final Configuration configBackup = ConfigurationProcesser.PluginConfig;
