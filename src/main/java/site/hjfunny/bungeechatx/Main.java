@@ -91,7 +91,7 @@ public final class Main extends Plugin {
         Boolean loadStatus = false;
         try {
             loadStatus = ConfigurationProcesser.LoadConfig(this);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             getLogger().warning("Plugin config load failed, the plugin won't work properly!");
             ConfigurationProcesser.PluginConfig = new Configuration();
