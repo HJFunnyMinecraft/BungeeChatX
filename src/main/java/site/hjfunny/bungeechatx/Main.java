@@ -1,6 +1,5 @@
 package site.hjfunny.bungeechatx;
 
-import java.io.IOException;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;

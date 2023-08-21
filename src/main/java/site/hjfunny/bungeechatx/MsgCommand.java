@@ -41,7 +41,9 @@ public class MsgCommand extends Command implements TabExecutor {
     public void execute(CommandSender sender, String[] args) {
         if(args.length < 2) {
             // Wrong command syntax
-            sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand")));
+            sender.sendMessage(new TextComponent(MessagesProcesser.PluginMessages.getString("    // Command Initial from LuckPerms Start\n" + //
+                    "    private static final String NAME = \"bcr\";\n" + //
+                    "    private static final String[] ALIASES wrongCommand")));
             return;
         }
 

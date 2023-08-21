@@ -22,7 +22,7 @@ public class PostLoginEvent implements Listener {
             PlayerDataProcesser.JoinedPlayers.add(event.getPlayer());
             if(ConfigurationProcesser.PluginConfig.getBoolean("features.playerJoinMessage")) {
                 // Send player joining message
-                String message = ConfigurationProcesser.PluginConfig.getString("messages.playerJoinMessage").replaceAll("%0%", event.getPlayer().getName());
+                String message = MessagesProcesser.PluginMessages.getString("playerJoinMessage").replaceAll("%0%", event.getPlayer().getName());
                 plugin.getLogger().info(message);
                 ProxyServer.getInstance().broadcast(new TextComponent(message));
             }
@@ -38,7 +38,7 @@ public class PostLoginEvent implements Listener {
         PlayerDataProcesser.JoinedPlayers.remove(event.getPlayer());
         if(ConfigurationProcesser.PluginConfig.getBoolean("features.playerJoinMessage")) {
             // Send player leaving message
-            String message = ConfigurationProcesser.PluginConfig.getString("messages.playerLeaveMessage").replaceAll("%0%", event.getPlayer().getName());
+            String message = MessagesProcesser.PluginMessages.getString("playerLeaveMessage").replaceAll("%0%", event.getPlayer().getName());
             plugin.getLogger().info(message);
             ProxyServer.getInstance().broadcast(new TextComponent(message));
         }

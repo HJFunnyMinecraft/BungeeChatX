@@ -32,6 +32,7 @@ public class ChatEvent implements Listener {
             for (String word : bannedWords) {
                 if (sendedMessage.contains(word.toLowerCase())) {
                     plugin.getLogger().info("§c§l[Attention] " + player.getName() + " sended a message that contains banned word!");
+                    player.sendMessage(new TextComponent(MessagesProcesser.PluginMessages.getString("sendBannedWords").replace("%0%", word)));
                     event.setCancelled(true);
                     return;
                 }

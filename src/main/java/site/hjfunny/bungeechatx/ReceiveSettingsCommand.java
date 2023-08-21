@@ -38,20 +38,20 @@ public class ReceiveSettingsCommand extends Command implements TabExecutor {
     public void execute(CommandSender sender, String[] args) {
         if(args.length != 1) {
             // Wrong command syntax
-            sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand")));
+            sender.sendMessage(new TextComponent(MessagesProcesser.PluginMessages.getString("wrongCommand")));
             return;
         }
         if(args[0].equals("on")) {
             // Enable cross-server messages communication
             PlayerDataProcesser.PlayerReceiveSettings.replace(sender.getName(), true);
-            sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.playerRSOn")));
+            sender.sendMessage(new TextComponent(MessagesProcesser.PluginMessages.getString("playerRSOn")));
         } else if(args[0].equals("off")) {
             // Disable cross-server messages communication
             PlayerDataProcesser.PlayerReceiveSettings.replace(sender.getName(), false);
-            sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.playerRSOff")));
+            sender.sendMessage(new TextComponent(MessagesProcesser.PluginMessages.getString("playerRSOff")));
         } else {
             // Wrong command syntax
-            sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand")));
+            sender.sendMessage(new TextComponent(MessagesProcesser.PluginMessages.getString("wrongCommand")));
         }
     }
 
