@@ -86,8 +86,10 @@ public final class Main extends Plugin {
         getLogger().info("§c                   |___/                                      §r");
         getLogger().info("Plugin by §bCodeZhangBorui & bcmray§r, §b" + PluginVersion + "§r, §lLoading...§r");
         
+        Boolean loadStatus;
+
         // Load Config
-        Boolean loadStatus = false;
+        loadStatus = false;
         try {
             loadStatus = ConfigurationProcesser.LoadConfig(this);
         } catch (Exception e) {
@@ -99,6 +101,22 @@ public final class Main extends Plugin {
         if(loadStatus == false) {
             getLogger().warning("Plugin config load failed, the plugin won't work properly!");
             ConfigurationProcesser.PluginConfig = new Configuration();
+            return;
+        }
+
+        // Load Messages
+        loadStatus = false;
+        try {
+            loadStatus = MessagesProcesser.LoadConfig(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+            getLogger().warning("Plugin messages load failed, the plugin won't work properly!");
+            MessagesProcesser.PluginMessages = new Configuration();
+            return;
+        }
+        if(loadStatus == false) {
+            getLogger().warning("Plugin messages load failed, the plugin won't work properly!");
+            MessagesProcesser.PluginMessages = new Configuration();
             return;
         }
 

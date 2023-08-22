@@ -88,8 +88,10 @@ public class BcxCommand extends Command implements TabExecutor {
                                     : "Disabled")));
             sender.sendMessage(new TextComponent("§b§lStatus Check Finished."));
         } else if (args[0].equals("reload")) {
-            // Reload the config.yml
-            Boolean reloadStatus = false;
+            // Reload the config.yml and messages.yml
+            Boolean reloadStatus;
+            // Load Config
+            reloadStatus = false;
             final Configuration configBackup = ConfigurationProcesser.PluginConfig;
             try {
                 reloadStatus = ConfigurationProcesser.LoadConfig(plugin);
@@ -107,6 +109,25 @@ public class BcxCommand extends Command implements TabExecutor {
                 return;
             }
             sender.sendMessage(new TextComponent("§aConfiguration reload successfully"));
+            // Load Messages
+            reloadStatus = false;
+            final Configuration messagesBackup = MessagesProcesser.PluginMessages;
+            try {
+                reloadStatus = MessagesProcesser.LoadConfig(plugin);
+            } catch (IOException e) {
+                e.printStackTrace();
+                sender.sendMessage(
+                        new TextComponent("§e§lError: §rMessages file load failed, fallback to previous messages."));
+                MessagesProcesser.PluginMessages = messagesBackup;
+                return;
+            }
+            if (reloadStatus == false) {
+                sender.sendMessage(
+                        new TextComponent("§e§lError: §rMessages file load failed, fallback to previous config."));
+                MessagesProcesser.PluginMessages = messagesBackup;
+                return;
+            }
+            sender.sendMessage(new TextComponent("§aMessages reload successfully"));
         } else {
             // Wrong command syntax
             sender.sendMessage(new TextComponent(ConfigurationProcesser.PluginConfig.getString("messages.wrongCommand")
